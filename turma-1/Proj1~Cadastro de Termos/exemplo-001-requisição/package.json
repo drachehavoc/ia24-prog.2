@@ -1,0 +1,10 @@
+{
+  "name": "exemplo-001-requisição",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
