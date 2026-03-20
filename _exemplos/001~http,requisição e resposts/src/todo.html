@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+  <form>
+    <input type="text" name="item" id="item">
+    <button type="submit">Adicionar</button>
+  </form>
+
+  <ul id="items">
+    <template>
+      <li>
+        <input class="item"></input>
+        <button class="delete">X</button>
+      </li>
+    </template>
+  </ul>
+
+  <script>
+    const itemInput = document.querySelector('form input');
+    const addButton = document.querySelector('form button');
+    const itemsList = document.getElementById('items');
+    const template = itemsList.querySelector('template');
+
+    addButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      const newItem = template.content.querySelector('li').cloneNode(true);
+      newItem.querySelector('.item').value = itemInput.value;
+      newItem.querySelector('.delete').addEventListener('click', () => {
+        newItem.remove();
+      });
+      itemsList.append(newItem);
+      itemInput.value = '';
+    })
+  </script>
+
+</body>
+</html>

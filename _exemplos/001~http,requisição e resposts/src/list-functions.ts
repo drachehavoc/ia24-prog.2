@@ -1,7 +1,7 @@
 const fliePath = 'items.json';
 
 // CRUD - C - Create
-async function addItemToList(item: string) {
+export async function createItem(item: string) {
   const file = Bun.file(fliePath);
   const content = await file.json();
   content.push(item);
@@ -10,14 +10,14 @@ async function addItemToList(item: string) {
 }
 
 // CRUD - R - Read
-async function readListFromFile() {
+export async function readItems() {
   const file = Bun.file(fliePath);
   const content = await file.json();
   return content;
 }
 
 // CRUD - U - Update
-async function updateItemInList(index: number, newItem: string) { 
+export async function updateItem(index: number, newItem: string) { 
   const file = Bun.file(fliePath);
   const content = await file.json();
   content[index] = newItem;
@@ -26,16 +26,10 @@ async function updateItemInList(index: number, newItem: string) {
 }
 
 // CRUD - D - Delete
-async function deleteItemFromList(index: number) {
+export async function deleteItem(index: number) {
   const file = Bun.file(fliePath);
   const content = await file.json();
   content.splice(index, 1);
   const newContent = JSON.stringify(content);
   await Bun.write(fliePath, newContent);
 }
-
-
-
-// await addItemToList('Novo item adicionado');
-await deleteItemFromList(0);
-console.log(await readListFromFile());
