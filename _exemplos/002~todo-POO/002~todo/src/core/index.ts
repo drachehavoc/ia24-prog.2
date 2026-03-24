@@ -54,7 +54,7 @@ class List {
     try {
       const file = Bun.file(this.filename)
       const content = await file.json()
-      console.warn("NÃO SE ESQUEÇA DE POPULAR A LIST NO CONSTRUCTOR")
+      console.warn("NÃO SE ESQUEÇA DE POPULAR ITEMS COM OBJETOS DA CLASSE ITEM")
     } catch (error) {
       Bun.write(this.filename, "[]")
     }
