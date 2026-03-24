@@ -61,8 +61,8 @@ class List {
   }
 }
 
-const mercado = new List('mercado.json')
-const tarefas = new List('tarefas.json')
+// const mercado = new List('mercado.json')
+// const tarefas = new List('tarefas.json')
 
 // const item = new Item("comprar lete")
 
