@@ -2,7 +2,7 @@
 
 O plano é desenvolver três aplicações iniciais, que deem embasamento suficiente para a construção de aplicações mais complexas, utilizando conceitos de orientação a objetos, padrões de projeto e boas práticas de desenvolvimento.
 
-- O primeiro passo aqui chamado de `passo-1 - aplicação terminal - sem orientação a objetos` tem como objetivo criar uma aplicação de linha de comando (CLI) para gerenciamento de tarefas, sem utilizar orientação a objetos. Assim recapitulando o que foi visto nas disciplinas anteriores de programação, criando um `CRUD` simples para tarefas, utilizando funções e estruturas de dados básicas.
+- O primeiro passo, aqui chamado de `passo-1 - aplicação terminal - sem orientação a objetos`, tem como objetivo criar uma aplicação de linha de comando (CLI) para gerenciamento de tarefas, sem utilizar orientação a objetos. Assim, recapitulando o que foi visto nas disciplinas anteriores de programação, criando um `CRUD` simples para tarefas, utilizando funções e estruturas de dados básicas.
 - O segundo passo, `passo-2 - aplicação terminal - orientação a objetos`, tem como objetivo refatorar a aplicação do passo 1, utilizando conceitos de orientação a objetos. Isso inclui a criação de classes para representar as tarefas e o gerenciamento das mesmas, além de aplicar princípios de design orientado a objetos.
 - O terceiro passo, `passo-3 - aplicação web - orientação a objetos`, tem como objetivo criar uma aplicação web para gerenciamento de tarefas, utilizando conceitos de orientação a objetos. Isso inclui a criação de classes para representar as tarefas e o gerenciamento das mesmas, além de aplicar princípios de design orientado a objetos.
 
@@ -20,16 +20,16 @@ Antes de começarmos, é importante conhecer brevemente os conteúdos:
   - Instalação no Windows
     - Acesse o site oficial do Bun: https://bun.sh/
     - Copie o comando de instalação fornecido na página inicial (referente ao Windows).
-    - Abra o terminal (cmd ou PowerShell) e cole o comando de instalação, em seguida pressione Enter.
+    - Abra o terminal (cmd ou PowerShell) e cole o comando de instalação. Em seguida, pressione Enter.
     - Aguarde a conclusão da instalação.
-    - Feche o terminal (ou o VSCode caso tenha feito no terminal integrado) e abra novamente para garantir que as variáveis de ambiente sejam atualizadas.
+    - Feche o terminal (ou o VSCode, caso tenha feito no terminal integrado) e abra novamente para garantir que as variáveis de ambiente sejam atualizadas.
     - Para verificar se a instalação foi bem-sucedida, execute o comando `bun --version` no terminal. Se o Bun estiver instalado corretamente, ele exibirá a versão instalada.
   - Instalação no Linux (Codespaces)
     - Acesse o site oficial do Bun: https://bun.sh/
     - Copie o comando de instalação fornecido na página inicial (referente ao Linux).
-    - Abra o terminal e cole o comando de instalação, em seguida pressione Enter.
+    - Abra o terminal e cole o comando de instalação. Em seguida, pressione Enter.
     - Aguarde a conclusão da instalação.
-    - Ao término da instalação, o Bun deve sugerir um comando para adicionar o Bun ao PATH, copie e cole esse comando no terminal e pressione Enter.
+    - Ao término da instalação, o Bun deve sugerir um comando para adicionar o Bun ao PATH. Copie e cole esse comando no terminal e pressione Enter.
     - Para verificar se a instalação foi bem-sucedida, execute o comando `bun --version` no terminal. Se o Bun estiver instalado corretamente, ele exibirá a versão instalada.
 
 - VSCode: Um editor de código-fonte leve e poderoso, com suporte para uma ampla variedade de linguagens de programação e ferramentas de desenvolvimento.
@@ -69,7 +69,7 @@ Crie um arquivo chamado `core.ts` para implementar a lógica principal da aplica
 
 #### Passo 1.2.1 - Defina o caminho para o arquivo JSON e a variável de dados em memória
 
-O arquivo deve iniciar com a definição de um caminho para o arquivo JSON onde as tarefas serão armazenadas no sistema de arquivos do sistema operacional, e uma variável para armazenar os dados em memória.
+O arquivo deve iniciar com a definição de um caminho para o arquivo JSON onde as tarefas serão armazenadas no sistema de arquivos do sistema operacional e uma variável para armazenar os dados em memória.
 
 ```typescript
 const filename = __dirname + '/data.todo.json';
@@ -80,7 +80,7 @@ let list: string[] | null = null;
 
 Na sequência, implemente a função para carregar os dados do arquivo e salvar os dados no arquivo:
 
-- A função `loadFromFile` deve verificar se os dados já estão carregados em memória, caso estejam, apenas retorná-los. Caso contrário, tenta ler o arquivo JSON, fazer parse do conteúdo e retornar os dados como um array de strings. Se ocorrer algum erro (como o arquivo não existir), a função deve criar um novo arquivo JSON com um array vazio e retornar um array vazio.
+- A função `loadFromFile` deve verificar se os dados já estão carregados em memória. Caso estejam, apenas retorná-los. Caso contrário, tenta ler o arquivo JSON, fazer parse do conteúdo e retornar os dados como um array de strings. Se ocorrer algum erro (como o arquivo não existir), a função deve criar um novo arquivo JSON com um array vazio e retornar um array vazio.
 
 ```typescript
 async function loadFromFile() {
@@ -238,7 +238,7 @@ Para o uso da aplicação via terminal por linha de comando, o usuário deve for
 
 #### Passo 1.3.1 - Importe as funções do core e obtenha o comando do terminal
 
-O arquivo `core.ts` exporta as funções necessárias para o funcionamento da aplicação, por isso logo na primeira linha importamos usando o seguinte comando `import todo from './core.ts'`, isso faz com que o namespace (espaço de nomes) `todo` tenha acesso a todos os métodos exportados por padrão (`export default { ... }`) no arquivo `core.ts`, isso significa que agora é possível acessar esses métodos da seguinte maneira:
+O arquivo `core.ts` exporta as funções necessárias para o funcionamento da aplicação. Por isso, logo na primeira linha, importamos usando o seguinte comando: `import todo from './core.ts'`. Isso faz com que o namespace (espaço de nomes) `todo` tenha acesso a todos os métodos exportados por padrão (`export default { ... }`) no arquivo `core.ts`. Isso significa que agora é possível acessar esses métodos da seguinte maneira:
 
 - todo.addItem
 - todo.getItems
@@ -247,7 +247,7 @@ O arquivo `core.ts` exporta as funções necessárias para o funcionamento da ap
 
 Note que são os mesmos nomes de métodos exportados no arquivo `core.ts`.
 
-Em seguida é preciso ler a variável `process.argv[2]` (process.argv é um array com os argumentos passados na linha de comando), isso permite pegar o segundo argumento da linha de comando, por exemplo: `bun cli.ts SEGUNDO TERCEIRO`, sendo que argv[2] representa o texto `SEGUNDO`, caso fosse lido argv[3] o valor seria `TERCEIRO` e assim por diante. Neste caso usamos argv para receber o comando do usuário.
+Em seguida, é preciso ler a variável `process.argv[2]` (process.argv é um array com os argumentos passados na linha de comando). Isso permite pegar o segundo argumento da linha de comando. Por exemplo: `bun cli.ts SEGUNDO TERCEIRO`, sendo que argv[2] representa o texto `SEGUNDO`. Caso fosse lido argv[3], o valor seria `TERCEIRO` e assim por diante. Neste caso, usamos argv para receber o comando do usuário.
 
 ```typescript
 import todo from './core.ts';
@@ -258,7 +258,7 @@ const command = process.argv[2];
 
 Se o valor de `command` for "add", então executamos a lógica para adicionar um novo item:
 
-- Verifica se o item foi fornecido, caso contrário exibe um erro e encerra o processo com erro.
+- Verifica se o item foi fornecido. Caso contrário, exibe um erro e encerra o processo com erro.
 - Executa a função `addItem` do módulo `todo`.
 - Exibe uma mensagem de sucesso.
 - Encerra o processo sem erro.
@@ -281,7 +281,7 @@ if (command === "add") {
 Se o valor de `command` for "list", então executamos a lógica para listar os itens:
 
 - Executa a função `getItems` do módulo `todo` para obter a lista de itens.
-- Verifica se a lista está vazia, caso esteja exibe uma mensagem informando que não há itens na lista e encerra o processo sem erro.
+- Verifica se a lista está vazia. Caso esteja, exibe uma mensagem informando que não há itens na lista e encerra o processo sem erro.
 - Exibe a lista de itens, numerando cada item com seu índice correspondente.
 - Encerra o processo sem erro.
 
@@ -306,7 +306,7 @@ if (command === "list") {
 Se o valor de `command` for "update", então executamos a lógica para atualizar um item:
 
 - Lê o índice e o novo item dos argumentos da linha de comando.
-- Verifica se o índice é um número válido e se o novo item foi fornecido, caso contrário exibe um erro e encerra o processo com erro.
+- Verifica se o índice é um número válido e se o novo item foi fornecido. Caso contrário, exibe um erro e encerra o processo com erro.
 - Executa a função `updateItem` do módulo `todo` para atualizar o item no índice especificado. Caso ocorra algum erro (como índice fora dos limites), exibe o erro e encerra o processo com erro.
 
 ```typescript
@@ -334,7 +334,7 @@ if (command === "update") {
 Se o valor de `command` for "remove", então executamos a lógica para remover um item:
 
 - Lê o índice dos argumentos da linha de comando.
-- Verifica se o índice é um número válido, caso contrário exibe um erro e encerra o processo com erro.
+- Verifica se o índice é um número válido. Caso contrário, exibe um erro e encerra o processo com erro.
 - Executa a função `removeItem` do módulo `todo` para remover o item no índice especificado. Caso ocorra algum erro (como índice fora dos limites), exibe o erro e encerra o processo com erro.
 
 ```typescript
@@ -439,7 +439,7 @@ process.exit(1);
 
 #### Passo 1.4 - Teste a aplicação
 
-Agora que a aplicação está implementada, é hora de testá-la para garantir que tudo esteja funcionando corretamente. Para testar a aplicação, abra o terminal e navegue até a pasta do projeto, em seguida execute os seguintes comandos:
+Agora que a aplicação está implementada, é hora de testá-la para garantir que tudo esteja funcionando corretamente. Para testar a aplicação, abra o terminal e navegue até a pasta do projeto. Em seguida, execute os seguintes comandos:
 
 - `bun cli.ts add "Minha primeira tarefa"`: Adiciona uma nova tarefa à lista.
 - `bun cli.ts list`: Lista todos os itens da lista.
@@ -458,6 +458,7 @@ Seja criativo.
 
 ## Passo 2 - Aplicação Terminal - Orientada a Objetos
 
-Recriar a mesma aplicação feita no passo 1, porém utilizando programação orientada a objetos. Aqui poderemos ver como a orientação a objetos é útil no reaproveitamento de código. Refazeremos a aplicação criando a possibilidade de ter várias listas diferentes.
+Recriar a mesma aplicação feita no passo 1, porém utilizando programação orientada a objetos. Aqui, poderemos ver como a orientação a objetos é útil no reaproveitamento de código. Refazeremos a aplicação criando a possibilidade de ter várias listas diferentes.
 
 ...See You Space Cowboy
+
