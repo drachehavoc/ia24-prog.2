@@ -29,9 +29,12 @@ Para isso, a primeira atividade será dividida em 4 partes, cada uma com um foco
 - JSON: [Alura: O que é JSON?](https://www.alura.com.br/artigos/o-que-e-json)
 - Async/Await: [Alura: Async/Await no JavaScript](https://www.alura.com.br/artigos/async-await-no-javascript-o-que-e-e-quando-usar)
 
-## *Disclaimer*
+## Como usar este material
 
-Todos os tópicos deste documento que forem focados em como escrever um arquivo específico de código descreverão, parte a parte, o que cada trecho faz. Ao término de cada tópico, o código completo do arquivo será apresentado.
+Nos tópicos focados em implementação, o conteúdo será apresentado em duas etapas:
+
+1. Explicação, parte a parte, do que cada trecho faz.
+2. Código completo do arquivo ao final da seção.
 
 ## Requisitos técnicos
 
@@ -49,15 +52,32 @@ No site oficial do Bun, procure pelo script de instalação do sistema operacion
 - se estiver no Linux ou macOS, basta colar o comando de instalação no terminal e seguir as instruções; ao término da instalação, o Bun mostrará uma sugestão de comando para adicionar o Bun ao PATH do sistema. Isso permite utilizar o Bun sem a necessidade de fechar o terminal.
 - após a instalação, para verificar se o Bun foi instalado corretamente, execute o comando `bun --version` ou, de maneira mais curta, `bun -v` no terminal (ou terminal integrado do VSCode). Se o Bun estiver instalado corretamente, ele exibirá a versão instalada.
 
+### Inicializando o projeto Bun no VS Code
+
+Com o VS Code aberto:
+
+1. Abra a pasta do projeto.
+2. Abra o terminal integrado (`Terminal > New Terminal`).
+3. Execute `bun init`.
+4. Confirme as opções de TypeScript.
+
+Depois, crie os arquivos da atividade na pasta da Parte 1:
+
+- `core.ts`
+- `cli.ts`
+- `data.todo.json` (inicializado com `[]`)
+
 ## Atividade 1 / Parte 1: Aplicação terminal - sem orientação a objetos
 
 Com o projeto inicializado, o próximo passo é iniciar o desenvolvimento da aplicação. Para isso, crie dois arquivos: `core.ts` e `cli.ts`. O arquivo `core.ts` deve conter a lógica de negócios da aplicação, ou seja, as funções para adicionar, listar, atualizar e remover itens da lista de tarefas, além de funções para ler e escrever os dados no arquivo JSON. O arquivo `cli.ts` deve conter a lógica de interação com o usuário, ou seja, o código para ler os comandos do terminal e chamar as funções do `core.ts` de acordo com os comandos recebidos.
+
+A seguir, veremos cada arquivo separadamente.
 
 ### O arquivo `core.ts` (lógica de negócios):
 
 - Deve conter as seguintes funções:
   - `addItem(item: string): Promise<void>`: Adiciona um item à lista de tarefas.
-  - `listItems(): Promise<string[]>`: Retorna a lista de tarefas.
+  - `getItems(): Promise<string[]>`: Retorna a lista de tarefas.
   - `updateItem(index: number, newItem: string): Promise<void>`: Atualiza um item da lista de tarefas com base no índice fornecido.
   - `removeItem(index: number): Promise<void>`: Remove um item da lista de tarefas com base no índice fornecido.
   - `loadFromFile(): Promise<string[]>`: Lê os dados do arquivo JSON e retorna a lista de tarefas.
@@ -131,7 +151,7 @@ Entendendo a função `saveToFile()`:
 - A função tenta salvar a constante `list` no arquivo JSON usando `Bun.write(jsonFilePath, JSON.stringify(list))`, que converte a lista de tarefas para uma string JSON e escreve no arquivo.
 - Se ocorrer um erro durante a escrita do arquivo, o erro é capturado e uma nova mensagem de erro é lançada, indicando que houve um problema ao salvar os dados no arquivo, junto com a mensagem original do erro.
 
-### Funções principais para manipulação da lista de tarefas (`addItem()`, `listItems()`, `updateItem()` e `removeItem()`)
+### Funções principais para manipulação da lista de tarefas (`addItem()`, `getItems()`, `updateItem()` e `removeItem()`)
 
 
 #### Função `addItem(item: string): Promise<void>`
@@ -152,18 +172,19 @@ Entendendo a função `addItem()`:
 - Após adicionar o item à lista, a função chama `await saveToFile()` para salvar a lista atualizada no arquivo JSON. Isso garante que as alterações sejam persistidas.
 - A função não retorna nenhum valor, por isso o tipo de retorno é `Promise<void>`
 
-#### Função `listItems(): Promise<string[]>`
+#### Função `getItems(): Promise<string[]>`
 
-A função `listItems()` deve retornar o conteúdo atual da constante `list: string[]`, que representa a lista de tarefas, como uma `Promise<string[]>`.
+A função `getItems()` deve retornar o conteúdo atual da constante `list: string[]`, que representa a lista de tarefas, como uma `Promise<string[]>`.
 
 ```typescript
-function listItems() {
+async function getItems() {
   return list;
 }
 ```
 
-Entendendo a função `listItems()`:
-- A função não é declarada como `async`, pois ela não realiza nenhuma operação assíncrona, esta é uma função muito simples que apenas retorna o próprio valor da constante `list: string[]`.
+Entendendo a função `getItems()`:
+- A função retorna a lista atual de tarefas para quem precisar exibir os dados (como o `cli.ts`).
+- Neste exemplo, ela apenas devolve o conteúdo de `list`.
 
 > **⚠️ Nota:**
 > ---
@@ -183,12 +204,11 @@ async function updateItem(index: number, newItem: string) {
 ```
 
 Entendendo a função `updateItem()`:
-- A função é declarada como `async`, o que significa que ela retorna uma `Promise` e pode usar a palavra-chave `await` para esperar por operações assíncronas, isso é necessário para garantir que a operação de salvamento seja concluída antes de retornar.
+- A função segue o mesmo padrão assíncrono de `addItem()`: altera dados em memória e persiste no arquivo.
 - A função recebe dois parâmetros: `index` do tipo `number`, que representa a posição do item a ser atualizado na lista, e `newItem` do tipo `string`, que representa o novo valor do item.
 - A função verifica se o índice fornecido é válido, ou seja, se está dentro dos limites da lista. Se o índice for inválido, a função lança um erro com a mensagem "Index fora dos limites".
 - Se o índice for válido, a função atualiza o item na constante `list` na posição especificada pelo índice com o novo valor fornecido.
-- Após atualizar o item na lista, a função chama `await saveToFile()` para salvar a lista atualizada no arquivo JSON, garantindo que as alterações sejam persistidas.
-- A função não retorna nenhum valor, por isso o tipo de retorno é `Promise<void>`
+- Após atualizar o item na lista, a função chama `await saveToFile()` para salvar a lista atualizada no arquivo JSON.
 
 #### Função `removeItem(index: number): Promise<void>`
 
@@ -204,16 +224,15 @@ async function removeItem(index: number) {
 ```
 
 Entendendo a função `removeItem()`:
-- A função é declarada como `async`, o que significa que ela retorna uma `Promise` e pode usar a palavra-chave `await` para esperar por operações assíncronas, isso é necessário para garantir que a operação de salvamento seja concluída antes de retornar.
+- A função segue o mesmo padrão assíncrono das demais operações de escrita.
 - A função recebe um parâmetro `index` do tipo `number`, que representa a posição do item a ser removido da lista.
 - A função verifica se o índice fornecido é válido, ou seja, se está dentro dos limites da lista. Se o índice for inválido, a função lança um erro com a mensagem "Index fora dos limites".
 - Se o índice for válido, a função remove o item da constante `list` na posição especificada pelo índice usando o método `splice()`, que remove um elemento do array.
-- Após remover o item da lista, a função chama `await saveToFile()` para salvar a lista atualizada no arquivo JSON, garantindo que as alterações sejam persistidas.
-- A função não retorna nenhum valor, por isso o tipo de retorno é `Promise<void>`
+- Após remover o item da lista, a função chama `await saveToFile()` para salvar a lista atualizada no arquivo JSON.
 
 ### Exportando as funções principais
 
-Para que as funções aqui criadas possam ser utilizadas em outros arquivos, como o `cli.ts`, é necessário exportá-las. Para isso, basta adicionar a palavra-chave `export` antes da declaração de cada função principal, ou seja, das funções `addItem()`, `listItems()`, `updateItem()` e `removeItem()`. 
+Para que as funções aqui criadas possam ser utilizadas em outros arquivos, como o `cli.ts`, é necessário exportá-las. Neste caso, utilizamos `export default` para exportar um objeto com as funções principais.
 
 ```typescript
 export default { addItem, getItems, updateItem, removeItem };
@@ -223,7 +242,7 @@ export default { addItem, getItems, updateItem, removeItem };
 > ---
 > Entenda como `export` funciona; caso não tenha esse conhecimento, faça uma pesquisa sobre o tema.
 > 
-> Em nosso exemplo, optamos pela exportação padrão (`export default`), em que todas as funções principais são exportadas como um objeto. Dessa forma, ao importar esse módulo em outro arquivo, podemos acessar as funções principais por meio de um espaço de nome (namespace) definido pelo nome do módulo importado. Exemplo: `import todo from './core';`, e então acessar as funções como `todo.addItem()`, `todo.listItems()`, etc. Note que `todo`, neste caso, é apenas um nome de variável que representa o módulo importado e poderia ser qualquer outro nome, como `import core from './core';`, com acesso às funções por `core.addItem()`, `core.listItems()`, etc. A escolha do nome é uma questão de convenção e preferência pessoal, mas é importante manter a consistência em todo o projeto.
+> Em nosso exemplo, optamos pela exportação padrão (`export default`), em que todas as funções principais são exportadas como um objeto. Dessa forma, ao importar esse módulo em outro arquivo, podemos acessar as funções principais por meio de um espaço de nome (namespace) definido pelo nome do módulo importado. Exemplo: `import todo from './core';`, e então acessar as funções como `todo.addItem()`, `todo.getItems()`, etc. Note que `todo`, neste caso, é apenas um nome de variável que representa o módulo importado e poderia ser qualquer outro nome, como `import core from './core';`, com acesso às funções por `core.addItem()`, `core.getItems()`, etc. A escolha do nome é uma questão de convenção e preferência pessoal, mas é importante manter a consistência em todo o projeto.
 
 ### O arquivo `cli.ts` (lógica de interação com o usuário via terminal):
 
@@ -252,7 +271,7 @@ const command = process.argv[2];
 ```
 
 Entendendo a importação e leitura de comandos:
-- A linha `import todo from './core.ts';` importa o módulo `core.ts` e atribui o objeto exportado a uma variável chamada `todo`. Como `core.ts` exporta um objeto contendo as funções principais, a variável `todo` agora tem acesso a essas funções, como `todo.addItem()`, `todo.listItems()`, etc.
+- A linha `import todo from './core.ts';` importa o módulo `core.ts` e atribui o objeto exportado a uma variável chamada `todo`. Como `core.ts` exporta um objeto contendo as funções principais, a variável `todo` agora tem acesso a essas funções, como `todo.addItem()`, `todo.getItems()`, etc.
 - A linha `const command = process.argv[2];` lê o comando do terminal a partir do array `process.argv`, especificamente do índice 2, onde os comandos personalizados começam. O comando lido é armazenado na constante `command`, que será utilizada posteriormente para determinar qual ação executar com base no comando recebido do terminal.
 
 #### Implementando a lógica para o comando `add`
@@ -283,7 +302,7 @@ Entendendo a lógica para o comando `add`:
 
 #### Implementando a lógica para o comando `list`
 
-Este comando deve verificar se o comando recebido é igual a "list", e caso seja, deve chamar a função `listItems()` do módulo `core.ts` para obter a lista de tarefas, e em seguida exibir essa lista no console.
+Este comando deve verificar se o comando recebido é igual a "list" e, caso seja, deve chamar a função `getItems()` do módulo `core.ts` para obter a lista de tarefas e, em seguida, exibir essa lista no console.
 
 ```typescript
 if (command === "list") {
@@ -455,6 +474,17 @@ if (command === "remove") {
 console.error("Comando desconhecido. Use 'add', 'list', 'update' ou 'remove'.");
 process.exit(1);
 ```
+
+### Resumo da Parte 1
+
+Ao final desta etapa, você terá aprendido a:
+
+1. Inicializar um projeto Bun com TypeScript no VS Code.
+2. Separar responsabilidades entre `core.ts` (regras de negócio) e `cli.ts` (interface de terminal).
+3. Persistir dados simples em `data.todo.json`.
+4. Implementar comandos de terminal para adicionar, listar, atualizar e remover tarefas.
+
+Com essa base, a Parte 2 avança para uma organização orientada a objetos.
 
 ## Atividade 1 / Parte 2: Aplicação terminal - com orientação a objetos
 
