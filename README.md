@@ -61,11 +61,6 @@ Com o VS Code aberto:
 3. Execute `bun init -y`.
 4. Confirme as opções de TypeScript.
 
-Depois, crie os arquivos da atividade na pasta da Parte 1:
-
-- `core.ts`
-- `cli.ts`
-
 > **⚠️ Nota:**
 > ---
 > leia na documentação do Bun sobre o comando `bun init` para entender melhor o que ele faz e quais opções estão disponíveis: [Bun: bun init](https://bun.sh/docs/runtime/templating/init).
