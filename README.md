@@ -500,6 +500,15 @@ console.error("Comando desconhecido. Use 'add', 'list', 'update' ou 'remove'.");
 process.exit(1);
 ```
 
+### Comando para executar a aplicação no terminal
+
+Para executar a aplicação no terminal, utilize os seguintes comandos?
+
+- `bun cli.ts add "Minha nova tarefa"`: para adicionar um item à lista de tarefas
+- `bun cli.ts list`: para listar todos os itens da lista de tarefas
+- `bun cli.ts update 0 "Tarefa atualizada"`: para atualizar um item na lista de tarefas
+- `bun cli.ts remove 0`: para remover um item da lista de tarefas
+
 ### Resumo da Parte 1
 
 Ao final desta etapa, você terá aprendido a:
@@ -510,6 +519,21 @@ Ao final desta etapa, você terá aprendido a:
 4. Implementar comandos de terminal para adicionar, listar, atualizar e remover tarefas.
 
 Com essa base, a Parte 2 avança para uma organização orientada a objetos.
+
+### Atividade, teste seu conhecimento
+
+Leia todo o código e certifique-se de ter entendido tudo o que foi feito. Em seguida, aplique seu conhecimento adicionando uma pequena funcionalidade ao sistema. As sugestões são:
+
+- Adicionar funcionalidade para marcar tarefas como concluídas
+- Adicionar funcionalidade para filtrar tarefas por status (concluído ou em andamento)
+- Adicionar data e hora de criação da tarefa
+- Adicionar comando `clear` para limpar toda a lista de tarefas
+- Adicionar comando `search` para buscar tarefas por palavra-chave
+- Adicionar numeração automática de tarefas com formato melhorado na exibição
+- Adicionar validação para evitar tarefas duplicadas
+- Implementar um comando `help` que exiba todos os comandos disponíveis
+
+Escolha uma ou mais sugestões e implemente-as no código existente. Lembre-se de seguir os padrões já estabelecidos: lógica de negócios em `core.ts` e interface de terminal em `cli.ts`.
 
 ## Atividade 1 / Parte 2: Aplicação terminal - com orientação a objetos
 
