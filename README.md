@@ -335,6 +335,11 @@ Este comando deve verificar se o comando recebido é igual a "update", e caso se
 
 ```typescript
 if (command === "update") {
+  if (!process.argv[3]) {
+    console.error("Por favor, forneça um índice válido.");
+    process.exit(1);
+  }
+
   const index = parseInt(process.argv[3]);
   const newItem = process.argv[4];
 
@@ -356,6 +361,7 @@ if (command === "update") {
 
 Entendendo a lógica para o comando `update`:
 - A estrutura `if (command === "update")` verifica se o comando recebido do terminal é igual a "update". Se for, o código dentro desse bloco será executado.
+- Antes da conversão com `parseInt()`, o código verifica se `process.argv[3]` foi informado. Se não foi, exibe a mensagem "Por favor, forneça um índice válido." e encerra o processo.
 - A linha `const index = parseInt(process.argv[3]);` lê o índice do item a ser atualizado a partir do índice 3 do array `process.argv` e o converte para um número usando `parseInt()`, armazenando o resultado na constante `index`.
 - A linha `const newItem = process.argv[4];` lê o novo item a partir do índice 4 do array `process.argv` e armazena o resultado na constante `newItem`.
 - A estrutura `if (isNaN(index) || !newItem)` verifica se o índice é um número válido e se o novo item foi fornecido. Se o índice não for um número ou se o novo item for `undefined` ou uma string vazia, a função exibe uma mensagem de erro no console e encerra o processo com um código de saída 1, indicando que houve um erro.
@@ -369,6 +375,11 @@ Este comando deve verificar se o comando recebido é igual a "remove", e caso se
 
 ```typescript
 if (command === "remove") {
+  if (!process.argv[3]) {
+    console.error("Por favor, forneça um índice válido.");
+    process.exit(1);
+  }
+  
   const index = parseInt(process.argv[3]);
 
   if (isNaN(index)) {
@@ -389,6 +400,7 @@ if (command === "remove") {
 
 Entendendo a lógica para o comando `remove`:
 - A estrutura `if (command === "remove")` verifica se o comando recebido do terminal é igual a "remove". Se for, o código dentro desse bloco será executado.
+- Antes da conversão com `parseInt()`, o código verifica se `process.argv[3]` foi informado. Se não foi, exibe a mensagem "Por favor, forneça um índice válido." e encerra o processo.
 - A linha `const index = parseInt(process.argv[3]);` lê o índice do item a ser removido a partir do índice 3 do array `process.argv` e o converte para um número usando `parseInt()`, armazenando o resultado na constante `index`.
 - A estrutura `if (isNaN(index))` verifica se o índice é um número válido. Se o índice não for um número, a função exibe uma mensagem de erro no console e encerra o processo com um código de saída 1, indicando que houve um erro.
 - Se o índice for válido, a função tenta remover o item da lista de tarefas chamando `await todo.removeItem(index);` dentro de um bloco `try...catch` para lidar com possíveis erros que possam ocorrer durante a remoção.
@@ -438,6 +450,11 @@ if (command === "list") {
 }
 
 if (command === "update") {
+  if (!process.argv[3]) {
+    console.error("Por favor, forneça um índice válido.");
+    process.exit(1);
+  }
+
   const index = parseInt(process.argv[3]);
   const newItem = process.argv[4];
 
@@ -457,6 +474,11 @@ if (command === "update") {
 }
 
 if (command === "remove") {
+  if (!process.argv[3]) {
+    console.error("Por favor, forneça um índice válido.");
+    process.exit(1);
+  }
+  
   const index = parseInt(process.argv[3]);
 
   if (isNaN(index)) {

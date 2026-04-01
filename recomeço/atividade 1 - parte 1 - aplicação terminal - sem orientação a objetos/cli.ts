@@ -29,6 +29,11 @@ if (command === "list") {
 }
 
 if (command === "update") {
+  if (!process.argv[3]) {
+    console.error("Por favor, forneça um índice válido.");
+    process.exit(1);
+  }
+
   const index = parseInt(process.argv[3]);
   const newItem = process.argv[4];
 
@@ -48,6 +53,11 @@ if (command === "update") {
 }
 
 if (command === "remove") {
+  if (!process.argv[3]) {
+    console.error("Por favor, forneça um índice válido.");
+    process.exit(1);
+  }
+  
   const index = parseInt(process.argv[3]);
 
   if (isNaN(index)) {
