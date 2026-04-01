@@ -543,4 +543,4 @@ Para justificar o uso da orientação a objetos, adicionaremos a capacidade de m
 
 A classe `TodoList` deve conter métodos para adicionar, listar, encontrar e remover itens da lista de tarefas, além de métodos privados para ler e escrever os dados no arquivo JSON. A classe `TodoItem` deve conter propriedades para o conteúdo da tarefa e seu status (concluída ou pendente), além de métodos para marcar a tarefa como concluída ou pendente, bem como um método para atualizar o conteúdo da tarefa.
 
-... [isso será tema para a próxima aula] see you space cowboy! 
+... [isso será tema para a próxima aula] ... see you space cowboy! 
