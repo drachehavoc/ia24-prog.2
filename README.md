@@ -58,14 +58,17 @@ Com o VS Code aberto:
 
 1. Abra a pasta do projeto.
 2. Abra o terminal integrado (`Terminal > New Terminal`).
-3. Execute `bun init`.
+3. Execute `bun init -y`.
 4. Confirme as opções de TypeScript.
 
 Depois, crie os arquivos da atividade na pasta da Parte 1:
 
 - `core.ts`
 - `cli.ts`
-- `data.todo.json` (inicializado com `[]`)
+
+> **⚠️ Nota:**
+> ---
+> leia na documentação do Bun sobre o comando `bun init` para entender melhor o que ele faz e quais opções estão disponíveis: [Bun: bun init](https://bun.sh/docs/runtime/templating/init).
 
 ## Atividade 1 / Parte 1: Aplicação terminal - sem orientação a objetos
 
