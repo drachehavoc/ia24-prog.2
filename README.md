@@ -6,7 +6,7 @@ Para isso, a primeira atividade será dividida em 4 partes, cada uma com um foco
 
 - **Parte 1: Aplicação terminal - sem orientação a objetos**
   - tem foco na revisão de conceitos básicos de programação, visto nas disciplinas anteriores, como variáveis, tipos de dados, estruturas de controle, funções, manipulação de arquivos e outros.
-  - para isso desenvolveremos uma aplicação de linha de comando (terminal) CLI (Command Line Interface) para gerenciar uma lista de tarefas (to-do list).
+  - para isso será desenvolvida uma aplicação de linha de comando (terminal) CLI (Command Line Interface) para gerenciar uma lista de tarefas (to-do list).
   - a aplicação deve permitir adicionar, listar, atualizar e remover itens da lista de tarefas, utilizando comandos simples no terminal. 
   - a aplicação deve armazenar os dados em um arquivo JSON, para que as tarefas sejam persistentes entre as execuções do programa. 
   - a aplicação deve ser desenvolvida utilizando TypeScript, mas sem utilizar conceitos de orientação a objetos, ou seja, utilizando apenas funções, arrays, objetos literais e outros recursos básicos da linguagem.
@@ -16,11 +16,11 @@ Para isso, a primeira atividade será dividida em 4 partes, cada uma com um foco
   - a aplicação deve ser desenvolvida utilizando TypeScript e conceitos de orientação a objetos, como classes, objetos, herança, encapsulamento e outros.
 - **Parte 3: Aplicação web - com orientação a objetos**
   - tem foco no desenvolvimento web, utilizando conceitos básicos de orientação a objetos, como classes, objetos, herança, encapsulamento e outros.
-  - para isso desenvolveremos a mesma aplicação de gerenciamento de tarefas do exercício anterior, mas adicionando uma interface web simples que permita interagir com a lista de tarefas.
+  - para isso será desenvolvida a mesma aplicação de gerenciamento de tarefas do exercício anterior, mas com a adição de uma interface web simples que permita interagir com a lista de tarefas.
   - a aplicação deve ser desenvolvida utilizando TypeScript, conceitos básicos de orientação a objetos (como classes, objetos, herança e encapsulamento) e tecnologias web como HTML, CSS e JavaScript para criar a interface web, além de adicionar os conceitos de aplicação cliente-servidor, onde a aplicação web será o cliente e a lógica de negócios e acesso a dados será implementada em um servidor utilizando TypeScript.
 - **Parte 4: Aplicação web - com orientação a objetos e banco de dados sqlite**
   - tem foco no desenvolvimento web, utilizando conceitos básicos de orientação a objetos, como classes, objetos, herança, encapsulamento e outros, e utilizando banco de dados sqlite para persistência dos dados.
-  - para isso desenvolveremos a mesma aplicação de gerenciamento de tarefas do exercício anterior, porém apenas substituindo o armazenamento em arquivo JSON por um banco de dados sqlite, utilizando uma biblioteca de acesso a banco de dados para TypeScript.
+  - para isso será desenvolvida a mesma aplicação de gerenciamento de tarefas do exercício anterior, porém com a substituição do armazenamento em arquivo JSON por um banco de dados sqlite, utilizando uma biblioteca de acesso a banco de dados para TypeScript.
   - a aplicação deve ser desenvolvida utilizando TypeScript, conceitos básicos de orientação a objetos (como classes, objetos, herança e encapsulamento), tecnologias web como HTML, CSS e JavaScript para criar a interface web, conceitos de aplicação cliente-servidor (onde a aplicação web será o cliente e a lógica de negócios e acesso a dados será implementada em um servidor) e banco de dados sqlite para persistência dos dados.
 
 ## Conhecimentos prévios desejáveis
@@ -40,36 +40,36 @@ Nos tópicos focados em implementação, o conteúdo será apresentado em duas e
 
 ### Visual Studio Code (VSCode): [Visual Studio Code - Code Editing. Redefined](https://code.visualstudio.com/)
 
-Baixe e instale o Visual Studio Code (VSCode) em seu ambiente de trabalho, este é um editor de código leve, gratuito e com uma grande variedade de extensões que facilitam o desenvolvimento em TypeScript e outras linguagens.
+Recomenda-se a instalação do Visual Studio Code (VSCode) no ambiente de trabalho, pois se trata de um editor de código leve, gratuito e com uma grande variedade de extensões que facilitam o desenvolvimento em TypeScript e outras linguagens.
 
-Caso prefira utilizar outro editor de código, fique à vontade, mas o VSCode é recomendado para padronizar o ambiente de desenvolvimento deste curso.
+Caso se opte por outro editor de código, não há impedimento; ainda assim, o VSCode é recomendado para padronizar o ambiente de desenvolvimento deste curso.
 
-### Tenha o Bun instalado em seu ambiente de trabalho: [Bun: Fast all-in-one JavaScript runtime](https://bun.sh/).
+### Recomenda-se ter o Bun instalado no ambiente de trabalho: [Bun: Fast all-in-one JavaScript runtime](https://bun.sh/).
 
-No site oficial do Bun, procure pelo script de instalação do sistema operacional que você utiliza, copie o comando de instalação e cole no terminal:
+No site oficial do Bun, deve-se localizar o script de instalação correspondente ao sistema operacional utilizado, copiar o comando de instalação e colá-lo no terminal:
 
-- se estiver no Windows, certifique-se de fechar o terminal antes de abrir seu editor (caso esteja usando o terminal integrado do VSCode, feche o VSCode e abra novamente após a instalação do Bun).
-- se estiver no Linux ou macOS, basta colar o comando de instalação no terminal e seguir as instruções; ao término da instalação, o Bun mostrará uma sugestão de comando para adicionar o Bun ao PATH do sistema. Isso permite utilizar o Bun sem a necessidade de fechar o terminal.
-- após a instalação, para verificar se o Bun foi instalado corretamente, execute o comando `bun --version` ou, de maneira mais curta, `bun -v` no terminal (ou terminal integrado do VSCode). Se o Bun estiver instalado corretamente, ele exibirá a versão instalada.
+- no Windows, recomenda-se fechar o terminal antes de abrir o editor. Caso esteja sendo utilizado o terminal integrado do VSCode, recomenda-se fechar o VSCode e abri-lo novamente após a instalação do Bun.
+- no Linux ou macOS, basta colar o comando de instalação no terminal e seguir as instruções; ao término da instalação, o Bun mostrará uma sugestão de comando para adicionar o Bun ao PATH do sistema. Isso permite utilizar o Bun sem a necessidade de fechar o terminal.
+- após a instalação, para verificar se o Bun foi instalado corretamente, recomenda-se executar o comando `bun --version` ou, de maneira mais curta, `bun -v` no terminal (ou terminal integrado do VSCode). Se o Bun estiver instalado corretamente, a versão instalada será exibida.
 
 ### Inicializando o projeto Bun no VS Code
 
 Com o VS Code aberto:
 
-1. Abra a pasta do projeto.
-2. Abra o terminal integrado (`Terminal > New Terminal`).
-3. Execute `bun init -y`.
-4. Confirme as opções de TypeScript.
+1. Abrir a pasta do projeto.
+2. Abrir o terminal integrado (`Terminal > New Terminal`).
+3. Executar `bun init -y`.
+4. Confirmar as opções de TypeScript.
 
 > **⚠️ Nota:**
 > ---
-> leia na documentação do Bun sobre o comando `bun init` para entender melhor o que ele faz e quais opções estão disponíveis: [Bun: bun init](https://bun.sh/docs/runtime/templating/init).
+> Recomenda-se a leitura da documentação do Bun sobre o comando `bun init`, para melhor compreensão de seu funcionamento e das opções disponíveis: [Bun: bun init](https://bun.sh/docs/runtime/templating/init).
 
 ## Atividade 1 / Parte 1: Aplicação terminal - sem orientação a objetos
 
-Com o projeto inicializado, o próximo passo é iniciar o desenvolvimento da aplicação. Para isso, crie dois arquivos: `core.ts` e `cli.ts`. O arquivo `core.ts` deve conter a lógica de negócios da aplicação, ou seja, as funções para adicionar, listar, atualizar e remover itens da lista de tarefas, além de funções para ler e escrever os dados no arquivo JSON. O arquivo `cli.ts` deve conter a lógica de interação com o usuário, ou seja, o código para ler os comandos do terminal e chamar as funções do `core.ts` de acordo com os comandos recebidos.
+Com o projeto inicializado, o próximo passo é iniciar o desenvolvimento da aplicação. Para isso, devem ser criados dois arquivos: `core.ts` e `cli.ts`. O arquivo `core.ts` deve conter a lógica de negócios da aplicação, ou seja, as funções para adicionar, listar, atualizar e remover itens da lista de tarefas, além de funções para ler e escrever os dados no arquivo JSON. O arquivo `cli.ts` deve conter a lógica de interação com o usuário, ou seja, o código para ler os comandos do terminal e chamar as funções do `core.ts` de acordo com os comandos recebidos.
 
-A seguir, veremos cada arquivo separadamente.
+A seguir, cada arquivo será apresentado separadamente.
 
 ### O arquivo `core.ts` (lógica de negócios):
 
@@ -97,13 +97,11 @@ const jsonFilePath = __dirname + '/data.todo.json';
 const list: string[] = await loadFromFile();
 ```
 
-> **⚠️ Nota:** 
-> ---
-> Aqui, o método `loadFromFile()` é chamado antes de ser definido. Isso é possível em JavaScript e TypeScript devido ao conceito de "hoisting", em que as declarações de funções são elevadas para o topo do escopo, permitindo que sejam chamadas antes de sua definição no código. Caso não conheça o conceito, vale a pena pesquisar para entender melhor como isso funciona.
+> [!NOTE]
+> Aqui, o método `loadFromFile()` é chamado antes de ser definido. Isso é possível em JavaScript e TypeScript devido ao conceito de "hoisting", em que as declarações de funções são elevadas para o topo do escopo, permitindo que sejam chamadas antes de sua definição no código. Caso esse conceito ainda não seja conhecido, recomenda-se uma breve pesquisa para melhor compreensão do mecanismo.
 
-> **⚠️ Nota:** 
-> ---
-> A função `loadFromFile()` é chamada precedida pela palavra-chave `await`. Isso significa que `loadFromFile()` é uma função assíncrona que retorna uma `Promise`, e o código aguarda a resolução dessa `Promise` para atribuir o resultado à constante `list`. Caso não conheça o conceito de `async/await` e `Promise`, vale a pena pesquisar para entender melhor como isso funciona.
+> [!NOTE]
+> A função `loadFromFile()` é chamada precedida pela palavra-chave `await`. Isso significa que `loadFromFile()` é uma função assíncrona que retorna uma `Promise`, e o código aguarda a resolução dessa `Promise` para atribuir o resultado à constante `list`. Caso os conceitos de `async/await` e `Promise` ainda não sejam conhecidos, recomenda-se pesquisa complementar para melhor entendimento.
 
 ### Funções auxiliares para leitura e escrita de arquivos (`loadFromFile()` e `saveToFile()`)
 
@@ -184,8 +182,7 @@ Entendendo a função `getItems()`:
 - A função retorna a lista atual de tarefas para quem precisar exibir os dados (como o `cli.ts`).
 - Neste exemplo, ela apenas devolve o conteúdo de `list`.
 
-> **⚠️ Nota:**
-> ---
+> [!NOTE]
 > Esta função retorna a constante `list` diretamente, sem criar uma cópia dela. Isso significa que qualquer modificação feita na lista retornada por esta função afetará a constante `list` original. Em um cenário real, pode ser interessante retornar uma cópia da lista para evitar modificações acidentais, mas, para o propósito desta atividade, retornar a constante diretamente é suficiente. Para criar uma cópia da lista, poderia ser utilizado `return [...list]` ou `return list.slice()`, por exemplo.
 
 #### Função `updateItem(index: number, newItem: string): Promise<void>`
@@ -230,17 +227,16 @@ Entendendo a função `removeItem()`:
 
 ### Exportando as funções principais
 
-Para que as funções aqui criadas possam ser utilizadas em outros arquivos, como o `cli.ts`, é necessário exportá-las. Neste caso, utilizamos `export default` para exportar um objeto com as funções principais.
+Para que as funções aqui criadas possam ser utilizadas em outros arquivos, como o `cli.ts`, é necessário exportá-las. Neste caso, utiliza-se `export default` para exportar um objeto com as funções principais.
 
 ```typescript
 export default { addItem, getItems, updateItem, removeItem };
 ```
 
-> **⚠️ Nota:**
-> ---
-> Entenda como `export` funciona; caso não tenha esse conhecimento, faça uma pesquisa sobre o tema.
+> [!NOTE]
+> Recomenda-se compreender o funcionamento de `export`; caso esse conhecimento ainda não esteja consolidado, vale a pena consultar material complementar sobre o tema.
 > 
-> Em nosso exemplo, optamos pela exportação padrão (`export default`), em que todas as funções principais são exportadas como um objeto. Dessa forma, ao importar esse módulo em outro arquivo, podemos acessar as funções principais por meio de um espaço de nome (namespace) definido pelo nome do módulo importado. Exemplo: `import todo from './core';`, e então acessar as funções como `todo.addItem()`, `todo.getItems()`, etc. Note que `todo`, neste caso, é apenas um nome de variável que representa o módulo importado e poderia ser qualquer outro nome, como `import core from './core';`, com acesso às funções por `core.addItem()`, `core.getItems()`, etc. A escolha do nome é uma questão de convenção e preferência pessoal, mas é importante manter a consistência em todo o projeto.
+> Neste exemplo, adota-se a exportação padrão (`export default`), em que todas as funções principais são exportadas como um objeto. Dessa forma, ao importar esse módulo em outro arquivo, torna-se possível acessar as funções principais por meio de um espaço de nome (namespace) definido pelo nome do módulo importado. Exemplo: `import todo from './core';`, com acesso às funções por meio de `todo.addItem()`, `todo.getItems()` etc. Note-se que `todo`, nesse caso, é apenas um nome de variável que representa o módulo importado e poderia ser substituído por qualquer outro nome, como `import core from './core';`, com acesso às funções por `core.addItem()`, `core.getItems()` etc. A escolha do nome é uma questão de convenção e preferência, mas a consistência ao longo do projeto é importante.
 
 ### O arquivo `cli.ts` (lógica de interação com o usuário via terminal):
 
@@ -255,8 +251,7 @@ Após o término da criação deste arquivo, a aplicação será capaz de ser ex
 - `bun cli.ts update <index> <newItem>`: para atualizar um item da lista de tarefas com base no índice fornecido.
 - `bun cli.ts remove <index>`: para remover um item da lista de tarefas com base no índice fornecido.
 
-> **⚠️ Nota:**
-> ---
+> [!NOTE]
 > Na lista de comandos, foram adicionados valores com `<` e `>`. Estes devem ser substituídos pelos valores reais ao executar os comandos. Números podem ser utilizados diretamente, porém textos, principalmente os que contêm espaços, devem ser enviados entre aspas.
 
 #### Importando as funções do `core.ts` e lendo os comandos do terminal
@@ -497,7 +492,7 @@ process.exit(1);
 
 ### Comando para executar a aplicação no terminal
 
-Para executar a aplicação no terminal, utilize os seguintes comandos?
+Para executar a aplicação no terminal, podem ser utilizados os seguintes comandos:
 
 - `bun cli.ts add "Minha nova tarefa"`: para adicionar um item à lista de tarefas
 - `bun cli.ts list`: para listar todos os itens da lista de tarefas
@@ -506,7 +501,7 @@ Para executar a aplicação no terminal, utilize os seguintes comandos?
 
 ### Resumo da Parte 1
 
-Ao final desta etapa, você terá aprendido a:
+Ao final desta etapa, espera-se que tenham sido compreendidos os seguintes pontos:
 
 1. Inicializar um projeto Bun com TypeScript no VS Code.
 2. Separar responsabilidades entre `core.ts` (regras de negócio) e `cli.ts` (interface de terminal).
@@ -515,9 +510,9 @@ Ao final desta etapa, você terá aprendido a:
 
 Com essa base, a Parte 2 avança para uma organização orientada a objetos.
 
-### Atividade, teste seu conhecimento
+### Atividade de verificação de conhecimento
 
-Leia todo o código e certifique-se de ter entendido tudo o que foi feito. Em seguida, aplique seu conhecimento adicionando uma pequena funcionalidade ao sistema. As sugestões são:
+Recomenda-se a leitura integral do código, com verificação de entendimento de todas as etapas realizadas. Em seguida, pode-se aplicar o conhecimento adquirido por meio da adição de uma pequena funcionalidade ao sistema. As sugestões são:
 
 - Adicionar funcionalidade para marcar tarefas como concluídas
 - Adicionar funcionalidade para filtrar tarefas por status (concluído ou em andamento)
@@ -528,14 +523,514 @@ Leia todo o código e certifique-se de ter entendido tudo o que foi feito. Em se
 - Adicionar validação para evitar tarefas duplicadas
 - Implementar um comando `help` que exiba todos os comandos disponíveis
 
-Escolha uma ou mais sugestões e implemente-as no código existente. Lembre-se de seguir os padrões já estabelecidos: lógica de negócios em `core.ts` e interface de terminal em `cli.ts`.
+Pode-se escolher uma ou mais sugestões e implementá-las no código existente. Convém manter os padrões já estabelecidos: lógica de negócios em `core.ts` e interface de terminal em `cli.ts`.
 
 ## Atividade 1 / Parte 2: Aplicação terminal - com orientação a objetos
 
-Esta parte da atividade tem como objetivo refatorar a aplicação terminal criada na Parte 1 para utilizar conceitos de orientação a objetos, como classes, objetos, herança, encapsulamento e outros. A ideia é organizar o código de forma mais estruturada e modular, utilizando as vantagens da orientação a objetos para melhorar a manutenção e extensibilidade da aplicação.
+Nesta etapa, a aplicação da Parte 1 será refatorada para utilizar classes e objetos. Em vez de trabalhar apenas com funções soltas e arrays de strings, cada tarefa passará a ser representada como uma instância da classe `Item`, e a lista de tarefas como uma instância da classe `ToDo`.
 
-Para justificar o uso da orientação a objetos, adicionaremos a capacidade de marcar as tarefas como concluídas ou pendentes, além da criação de múltiplas listas de tarefas, onde cada lista terá seu próprio arquivo JSON para armazenamento dos dados, e cada tarefa terá um status indicando se está concluída ou pendente. Para isso, será necessário criar uma classe `TodoList` que representará uma lista de tarefas, e uma classe `TodoItem` que representará um item da lista de tarefas. 
+Essa mudança permite organizar melhor o código, separar responsabilidades e preparar a aplicação para evoluções futuras. Outro ponto importante é que, nesta versão, a lista não está mais presa a um único arquivo JSON fixo: o caminho do arquivo passa a ser informado no terminal, e cada instância de `ToDo` gerencia seu próprio arquivo.
 
-A classe `TodoList` deve conter métodos para adicionar, listar, encontrar e remover itens da lista de tarefas, além de métodos privados para ler e escrever os dados no arquivo JSON. A classe `TodoItem` deve conter propriedades para o conteúdo da tarefa e seu status (concluída ou pendente), além de métodos para marcar a tarefa como concluída ou pendente, bem como um método para atualizar o conteúdo da tarefa.
+## Estrutura da solução
 
-... [isso será tema para a próxima aula] ... see you space cowboy! 
+Nesta Parte 2, mantém-se a separação entre a lógica de negócios e a lógica de interação com o terminal:
+
+- `core.ts`: contém as classes `Item` e `ToDo`, responsáveis pelos dados e pelas operações da lista.
+- `cli.ts`: interpreta os argumentos do terminal, cria os objetos necessários e chama os métodos definidos em `core.ts`.
+
+## O arquivo `core.ts` (lógica de negócios orientada a objetos)
+
+Em vez de exportar apenas funções, agora exportamos duas classes:
+
+- `Item`: representa uma tarefa individual.
+- `ToDo`: representa uma lista de tarefas associada a um arquivo JSON.
+
+### Classe `Item`
+
+A classe `Item` é responsável por representar uma tarefa individual. No código atual, ela armazena apenas a descrição da tarefa.
+
+```typescript
+export class Item {
+  private description: string;
+
+  constructor(description: string) {
+    this.description = description;
+  }
+
+  updateDescription(newDescription: string) {
+    this.description = newDescription;
+  }
+
+  toJSON() {
+    return {
+      description: this.description
+    }
+  }
+}
+```
+
+Entendendo a classe `Item`:
+
+- A propriedade `description` é `private`, ou seja, só pode ser acessada diretamente dentro da própria classe.
+- O `constructor(description: string)` é executado quando um novo objeto `Item` é criado, recebendo a descrição inicial da tarefa.
+- O método `updateDescription(newDescription: string)` permite alterar a descrição do item já existente.
+- O método `toJSON()` devolve um objeto literal com os dados do item. Isso facilita a serialização para JSON ao salvar no arquivo.
+
+### Classe `ToDo`
+
+A classe `ToDo` representa uma lista de tarefas e concentra as operações principais da aplicação: carregar os dados, salvar, adicionar, listar, atualizar, remover e buscar itens.
+
+```typescript
+export class ToDo {
+  private filepath: string;
+  private items: Promise<Item[]>;
+
+  constructor(filepath: string) {
+    this.filepath = filepath;
+    this.items = this.loadFromFile();
+  }
+
+  private async saveToFile() {
+    try {
+      const items = await this.items;
+      const file = Bun.file(this.filepath);
+      const data = JSON.stringify(items);
+      return Bun.write(file, data);
+    } catch (error) {
+      console.error('Error saving to file:', error);
+    }
+  }
+
+  private async loadFromFile() {
+    const file = Bun.file(this.filepath);
+    if (!(await file.exists()))
+      return []
+    const data = await file.text();
+    return JSON.parse(data).map((itemData: any) => new Item(itemData.description));
+  }
+
+  async addItem(item: Item) {
+    const items = await this.items;
+    items.push(item);
+    this.saveToFile();
+  }
+
+  async getItems() {
+    return await this.items
+  }
+
+  async updateItem(index: number, newItem: Item) {
+    const items = await this.items;
+    if (index < 0 || index > items.length) 
+      throw new Error('Index out of bounds');
+    items[index] = newItem;
+    this.saveToFile();
+  }
+
+  async removeItem(index: number) {
+    const items = await this.items;
+    if (index < 0 || index > items.length) 
+      throw new Error('Index out of bounds');
+    items.splice(index, 1);
+    this.saveToFile();
+  }
+
+  async findItemByDescription(description: string): Promise<Item | undefined> {
+    const items = await this.items;
+    return items.find(item => item.toJSON().description === description);    
+  }
+
+  async findItemByIndex(index: number): Promise<Item | undefined> {
+    const items = await this.items;
+    if (index < 0 || index > items.length) 
+      throw new Error('Index out of bounds');
+    return items[index];
+  }
+}
+```
+
+### Propriedades da classe `ToDo`
+
+No início da classe, temos duas propriedades privadas:
+
+```typescript
+private filepath: string;
+private items: Promise<Item[]>;
+```
+
+Entendendo essas propriedades:
+
+- `filepath` guarda o caminho do arquivo JSON que será utilizado por aquela lista.
+- `items` guarda uma `Promise<Item[]>`, isto é, uma promessa que resultará em um array de objetos `Item`.
+- Como os dados precisam ser lidos do arquivo de forma assíncrona, a carga inicial é feita por `loadFromFile()` dentro do construtor.
+
+### O construtor da classe `ToDo`
+
+```typescript
+constructor(filepath: string) {
+  this.filepath = filepath;
+  this.items = this.loadFromFile();
+}
+```
+
+Entendendo o construtor:
+
+- Ao criar um novo objeto `ToDo`, é necessário informar o caminho do arquivo JSON.
+- Esse valor é armazenado em `this.filepath`.
+- Em seguida, `this.items` recebe o resultado de `this.loadFromFile()`, iniciando a leitura dos dados já existentes.
+
+## Métodos privados de persistência
+
+Assim como na Parte 1, ainda é necessário ler e escrever dados em arquivo. A diferença é que, nesta versão, essa responsabilidade fica encapsulada dentro da classe `ToDo`, por meio de métodos privados.
+
+### Método `loadFromFile()`
+
+```typescript
+private async loadFromFile() {
+  const file = Bun.file(this.filepath);
+  if (!(await file.exists()))
+    return []
+  const data = await file.text();
+  return JSON.parse(data).map((itemData: any) => new Item(itemData.description));
+}
+```
+
+Entendendo o método `loadFromFile()`:
+
+- O método usa `this.filepath` para localizar o arquivo associado à lista.
+- Se o arquivo ainda não existir, retorna um array vazio.
+- Se existir, lê o texto do arquivo.
+- Depois converte o JSON lido em um array de objetos `Item`, usando `map()` para recriar instâncias da classe.
+
+> [!NOTE]
+> Esse passo de reconstruir os objetos com `new Item(...)` é importante. Ao ler o JSON do arquivo, obtêm-se apenas objetos literais. Para recuperar os métodos da classe, como `updateDescription()`, é necessário criar novas instâncias de `Item`.
+
+### Método `saveToFile()`
+
+```typescript
+private async saveToFile() {
+  try {
+    const items = await this.items;
+    const file = Bun.file(this.filepath);
+    const data = JSON.stringify(items);
+    return Bun.write(file, data);
+  } catch (error) {
+    console.error('Error saving to file:', error);
+  }
+}
+```
+
+Entendendo o método `saveToFile()`:
+
+- Primeiro, o método aguarda a resolução de `this.items`.
+- Depois converte o array de itens para JSON usando `JSON.stringify()`.
+- Por fim, grava esse conteúdo no arquivo correspondente com `Bun.write()`.
+- Como o método está marcado como `private`, ele só pode ser chamado dentro da própria classe `ToDo`.
+
+## Métodos principais da lista de tarefas
+
+### Método `addItem(item: Item)`
+
+```typescript
+async addItem(item: Item) {
+  const items = await this.items;
+  items.push(item);
+  this.saveToFile();
+}
+```
+
+Entendendo o método `addItem()`:
+
+- Recebe um objeto do tipo `Item`.
+- Aguarda a lista ser carregada.
+- Adiciona o novo item ao array.
+- Salva a lista atualizada no arquivo.
+
+### Método `getItems()`
+
+```typescript
+async getItems() {
+  return await this.items
+}
+```
+
+Entendendo o método `getItems()`:
+
+- Retorna os itens carregados na lista.
+- O retorno é assíncrono porque os dados podem ainda estar sendo carregados do arquivo.
+
+### Método `updateItem(index: number, newItem: Item)`
+
+```typescript
+async updateItem(index: number, newItem: Item) {
+  const items = await this.items;
+  if (index < 0 || index > items.length) 
+    throw new Error('Index out of bounds');
+  items[index] = newItem;
+  this.saveToFile();
+}
+```
+
+Entendendo o método `updateItem()`:
+
+- Recebe o índice do item a ser alterado e um novo objeto `Item`.
+- Verifica se o índice está dentro de uma faixa válida.
+- Substitui o item antigo pelo novo.
+- Salva a alteração no arquivo.
+
+### Método `removeItem(index: number)`
+
+```typescript
+async removeItem(index: number) {
+  const items = await this.items;
+  if (index < 0 || index > items.length) 
+    throw new Error('Index out of bounds');
+  items.splice(index, 1);
+  this.saveToFile();
+}
+```
+
+Entendendo o método `removeItem()`:
+
+- Recebe o índice do item a ser removido.
+- Verifica se o índice é válido.
+- Remove o item usando `splice()`.
+- Persiste a lista atualizada no arquivo.
+
+### Métodos de busca
+
+Além das operações principais, a classe também possui métodos de busca.
+
+#### Método `findItemByDescription(description: string)`
+
+```typescript
+async findItemByDescription(description: string): Promise<Item | undefined> {
+  const items = await this.items;
+  return items.find(item => item.toJSON().description === description);    
+}
+```
+
+Esse método percorre a lista e retorna o primeiro item cuja descrição seja igual ao texto informado.
+
+#### Método `findItemByIndex(index: number)`
+
+```typescript
+async findItemByIndex(index: number): Promise<Item | undefined> {
+  const items = await this.items;
+  if (index < 0 || index > items.length) 
+    throw new Error('Index out of bounds');
+  return items[index];
+}
+```
+
+Esse método retorna o item localizado em um índice específico da lista.
+
+## O arquivo `cli.ts` (interface de terminal)
+
+Agora que a lógica de negócios foi encapsulada em classes, o `cli.ts` passa a ter a responsabilidade de:
+
+- ler o caminho do arquivo informado no terminal;
+- ler o comando desejado;
+- criar uma instância de `ToDo`;
+- criar objetos `Item` quando necessário;
+- chamar os métodos apropriados.
+
+O código atual é o seguinte:
+
+```typescript
+import { ToDo, Item } from './core.ts';
+
+const file = process.argv[2]
+const command = process.argv[3];
+
+if (!file) {
+  console.error("Por favor, forneça o caminho do arquivo.");
+  process.exit(1);
+}
+
+const todo = new ToDo(file);
+
+if (command === "add") {
+  const itemDescription = process.argv[4];
+  
+  if (!itemDescription) {
+    console.error("Por favor, forneça uma descrição para o item.");
+    process.exit(1);
+  }
+
+  const item = new Item(itemDescription);
+  await todo.addItem(item);
+  console.log(`Item "${itemDescription}" adicionado com sucesso!`);
+  process.exit(0);
+}
+
+if (command === "list") {
+  const items = await todo.getItems();
+
+  if (items.length === 0) {
+    console.log("Nenhum item na lista.");
+    process.exit(0);
+  }
+
+  console.log("Lista de itens:");
+  items.forEach((item, index) => console.log(`${index}: ${item.toJSON().description}`));
+  process.exit(0);
+}
+
+if (command === "update") {
+  // ...
+}
+
+if (command === "remove") {
+  // ...
+}
+
+console.error("Comando desconhecido. Use 'add', 'list', 'update' ou 'remove'.");
+process.exit(1);
+```
+
+### Importando as classes e lendo os argumentos
+
+```typescript
+import { ToDo, Item } from './core.ts';
+
+const file = process.argv[2]
+const command = process.argv[3];
+```
+
+Entendendo esse trecho:
+
+- Agora não se utiliza mais um objeto default exportado com funções.
+- Em vez disso, são importadas diretamente as classes `ToDo` e `Item`.
+- O caminho do arquivo JSON é lido em `process.argv[2]`.
+- O comando a ser executado é lido em `process.argv[3]`.
+
+Isso significa que, nesta Parte 2, o formato do comando mudou. Anteriormente, utilizava-se algo como `bun cli.ts add "Tarefa"`. Agora, também é necessário informar o arquivo da lista, por exemplo: `bun cli.ts lista.json add "Tarefa"`.
+
+### Criando a instância da lista
+
+```typescript
+if (!file) {
+  console.error("Por favor, forneça o caminho do arquivo.");
+  process.exit(1);
+}
+
+const todo = new ToDo(file);
+```
+
+Entendendo esse trecho:
+
+- Antes de qualquer operação, o programa verifica se o caminho do arquivo foi informado.
+- Se não foi, exibe erro e encerra a execução.
+- Caso o caminho exista, o programa cria um objeto `ToDo`, que passa a representar a lista de tarefas contida naquele arquivo.
+
+### Implementando o comando `add`
+
+```typescript
+if (command === "add") {
+  const itemDescription = process.argv[4];
+  
+  if (!itemDescription) {
+    console.error("Por favor, forneça uma descrição para o item.");
+    process.exit(1);
+  }
+
+  const item = new Item(itemDescription);
+  await todo.addItem(item);
+  console.log(`Item "${itemDescription}" adicionado com sucesso!`);
+  process.exit(0);
+}
+```
+
+Entendendo a lógica do comando `add`:
+
+- O texto da nova tarefa é lido em `process.argv[4]`.
+- Se nenhuma descrição for informada, o programa exibe erro.
+- Se a descrição existir, cria-se um novo objeto `Item`.
+- Esse objeto é enviado para `todo.addItem(item)`.
+- Ao final, uma mensagem de sucesso é exibida.
+
+### Implementando o comando `list`
+
+```typescript
+if (command === "list") {
+  const items = await todo.getItems();
+
+  if (items.length === 0) {
+    console.log("Nenhum item na lista.");
+    process.exit(0);
+  }
+
+  console.log("Lista de itens:");
+  items.forEach((item, index) => console.log(`${index}: ${item.toJSON().description}`));
+  process.exit(0);
+}
+```
+
+Entendendo a lógica do comando `list`:
+
+- O programa solicita os itens por meio de `await todo.getItems()`.
+- Se a lista estiver vazia, mostra a mensagem correspondente.
+- Caso haja itens, percorre o array com `forEach()`.
+- Cada item é exibido usando `item.toJSON().description`, pois a descrição está encapsulada dentro do objeto `Item`.
+
+### Comandos `update` e `remove`
+
+No código atual, os blocos desses comandos já estão reservados, mas ainda não foram implementados:
+
+```typescript
+if (command === "update") {
+  // ...
+}
+
+if (command === "remove") {
+  // ...
+}
+```
+
+Isso é útil para mostrar que a estrutura da aplicação já está preparada para evoluir. A lógica de negócios necessária já existe em `core.ts`, por meio dos métodos `updateItem()` e `removeItem()`. O próximo passo seria completar a interface do terminal para receber os argumentos, validar os dados e chamar esses métodos.
+
+### Lógica para comando desconhecido
+
+```typescript
+console.error("Comando desconhecido. Use 'add', 'list', 'update' ou 'remove'.");
+process.exit(1);
+```
+
+Se o comando informado não corresponder a nenhuma das opções tratadas, a aplicação exibe uma mensagem de erro e encerra a execução.
+
+## Como executar a aplicação nesta Parte 2
+
+Como agora o caminho do arquivo é informado no terminal, os comandos passam a seguir este formato:
+
+- `bun cli.ts lista.json add "Minha nova tarefa"`: adiciona um item ao arquivo `lista.json`
+- `bun cli.ts lista.json list`: lista os itens armazenados no arquivo `lista.json`
+
+> [!NOTE]
+> No estado atual do código, apenas os comandos `add` e `list` estão implementados em `cli.ts`. Os métodos de atualização e remoção já existem na classe `ToDo`, mas a interface de terminal para esses comandos ainda precisa ser concluída.
+
+## Resumo da Parte 2
+
+Ao final desta etapa, terão sido praticados os seguintes aspectos:
+
+1. Criação de classes em TypeScript.
+2. Uso de propriedades e métodos com encapsulamento.
+3. Instanciação de objetos com `new`.
+4. Organização da lógica de persistência dentro de uma classe.
+5. Separação entre modelagem dos dados (`Item`), gerenciamento da lista (`ToDo`) e interface de terminal (`cli.ts`).
+6. Uso de um arquivo JSON informado dinamicamente no terminal.
+
+Com essa base, a aplicação fica mais preparada para crescer. Nas próximas evoluções, é natural adicionar mais dados aos itens, como status, data de criação, prioridade ou suporte a múltiplas operações completas no CLI.
+
+### Atividade de verificação de conhecimento
+
+Recomenda-se a leitura do código da Parte 2 e a conclusão da interface de terminal, de modo a acompanhar a modelagem orientada a objetos. Algumas sugestões:
+
+- Implementar os comandos `update` e `remove` no `cli.ts`
+- Adicionar status de concluído ou pendente à classe `Item`
+- Criar um método para marcar um item como concluído
+- Implementar múltiplas listas com nomes diferentes de arquivos JSON
+- Adicionar um comando para buscar itens por descrição usando `findItemByDescription()`
+- Melhorar a exibição dos itens no terminal
+
+O ponto principal desta Parte 2 é perceber como a orientação a objetos reorganiza o mesmo problema da Parte 1 em torno de classes e objetos, deixando o código mais preparado para futuras extensões.
