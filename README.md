@@ -6,6 +6,7 @@
 - ☑ Atividade 1: Aplicação terminal - sem orientação a objetos
   - `core.ts` (lógica de negócios)
   - `cli.ts` (lógica de interação com o usuário via terminal)
+  - Adicionar funcio
 - ☐ Atividade 2: Aplicação terminal - com orientação a objetos
   - `core.ts` (lógica de negócios orientada a objetos)
   - `cli.ts` (lógica de interação com o usuário via terminal)
@@ -87,13 +88,17 @@ Com o VS Code aberto:
 > ---
 > Recomenda-se a leitura da documentação do Bun sobre o comando `bun init`, para melhor compreensão de seu funcionamento e das opções disponíveis: [Bun: bun init](https://bun.sh/docs/runtime/templating/init).
 
-## Atividade 1 / Parte 1: Aplicação terminal - sem orientação a objetos
+## Atividade 1
+
+...
+
+### Atividade 1 / Parte 1: Aplicação terminal - sem orientação a objetos
 
 Com o projeto inicializado, o próximo passo é iniciar o desenvolvimento da aplicação. Para isso, devem ser criados dois arquivos: `core.ts` e `cli.ts`. O arquivo `core.ts` deve conter a lógica de negócios da aplicação, ou seja, as funções para adicionar, listar, atualizar e remover itens da lista de tarefas, além de funções para ler e escrever os dados no arquivo JSON. O arquivo `cli.ts` deve conter a lógica de interação com o usuário, ou seja, o código para ler os comandos do terminal e chamar as funções do `core.ts` de acordo com os comandos recebidos.
 
 A seguir, cada arquivo será apresentado separadamente.
 
-### O arquivo `core.ts` (lógica de negócios):
+#### O arquivo `core.ts` (lógica de negócios):
 
 - Deve conter as seguintes funções:
   - `addItem(item: string): Promise<void>`: Adiciona um item à lista de tarefas.
@@ -107,7 +112,7 @@ A seguir, cada arquivo será apresentado separadamente.
   - `list`: que deve conter a lista de tarefas carregada do arquivo JSON.
 
 
-#### Constantes e variáveis globais
+##### Constantes e variáveis globais
 
 No início do arquivo `core.ts`, devem ser definidas as constantes e variáveis globais que serão utilizadas em todo o arquivo, essas constantes e variáveis são:
 
@@ -125,7 +130,7 @@ const list: string[] = await loadFromFile();
 > [!NOTE]
 > A função `loadFromFile()` é chamada precedida pela palavra-chave `await`. Isso significa que `loadFromFile()` é uma função assíncrona que retorna uma `Promise`, e o código aguarda a resolução dessa `Promise` para atribuir o resultado à constante `list`. Caso os conceitos de `async/await` e `Promise` ainda não sejam conhecidos, recomenda-se pesquisa complementar para melhor entendimento.
 
-### Funções auxiliares para leitura e escrita de arquivos (`loadFromFile()` e `saveToFile()`)
+#### Funções auxiliares para leitura e escrita de arquivos (`loadFromFile()` e `saveToFile()`)
 
 Logo após a definição das constantes, as funções mencionadas acima devem ser implementadas. Iniciaremos com as funções auxiliares que não devem ser acessíveis por outros arquivos, ou seja, funções que não devem ser exportadas. No contexto desta aplicação, essas funções são `loadFromFile()` e `saveToFile(items: string[])`, responsáveis por ler e escrever os dados no arquivo JSON no sistema de arquivos do sistema operacional, respectivamente.
 
@@ -169,10 +174,10 @@ Entendendo a função `saveToFile()`:
 - A função tenta salvar a constante `list` no arquivo JSON usando `Bun.write(jsonFilePath, JSON.stringify(list))`, que converte a lista de tarefas para uma string JSON e escreve no arquivo.
 - Se ocorrer um erro durante a escrita do arquivo, o erro é capturado e uma nova mensagem de erro é lançada, indicando que houve um problema ao salvar os dados no arquivo, junto com a mensagem original do erro.
 
-### Funções principais para manipulação da lista de tarefas (`addItem()`, `getItems()`, `updateItem()` e `removeItem()`)
+#### Funções principais para manipulação da lista de tarefas (`addItem()`, `getItems()`, `updateItem()` e `removeItem()`)
 
 
-#### Função `addItem(item: string): Promise<void>`
+##### Função `addItem(item: string): Promise<void>`
 
 A função `addItem()` deve receber um item do tipo string, adicionar esse item à constante `list: string[]`, e em seguida chamar a função `saveToFile()` para salvar `list` atualizada no arquivo JSON. A função deve retornar uma `Promise<void>` indicando que a operação foi concluída.
 
@@ -190,7 +195,7 @@ Entendendo a função `addItem()`:
 - Após adicionar o item à lista, a função chama `await saveToFile()` para salvar a lista atualizada no arquivo JSON. Isso garante que as alterações sejam persistidas.
 - A função não retorna nenhum valor, por isso o tipo de retorno é `Promise<void>`
 
-#### Função `getItems(): Promise<string[]>`
+##### Função `getItems(): Promise<string[]>`
 
 A função `getItems()` deve retornar o conteúdo atual da constante `list: string[]`, que representa a lista de tarefas, como uma `Promise<string[]>`.
 
@@ -207,7 +212,7 @@ Entendendo a função `getItems()`:
 > [!NOTE]
 > Esta função retorna a constante `list` diretamente, sem criar uma cópia dela. Isso significa que qualquer modificação feita na lista retornada por esta função afetará a constante `list` original. Em um cenário real, pode ser interessante retornar uma cópia da lista para evitar modificações acidentais, mas, para o propósito desta atividade, retornar a constante diretamente é suficiente. Para criar uma cópia da lista, poderia ser utilizado `return [...list]` ou `return list.slice()`, por exemplo.
 
-#### Função `updateItem(index: number, newItem: string): Promise<void>`
+##### Função `updateItem(index: number, newItem: string): Promise<void>`
 
 A função `updateItem()` deve receber um índice do tipo `number` e um novo item do tipo `string`, atualizar o item na constante `list: string[]` com base no índice fornecido, e em seguida chamar a função `saveToFile()` para salvar a lista atualizada no arquivo JSON. A função deve retornar uma `Promise<void>` indicando que a operação foi concluída.
 
@@ -227,7 +232,7 @@ Entendendo a função `updateItem()`:
 - Se o índice for válido, a função atualiza o item na constante `list` na posição especificada pelo índice com o novo valor fornecido.
 - Após atualizar o item na lista, a função chama `await saveToFile()` para salvar a lista atualizada no arquivo JSON.
 
-#### Função `removeItem(index: number): Promise<void>`
+##### Função `removeItem(index: number): Promise<void>`
 
 A função `removeItem()` deve receber um índice do tipo `number`, remover o item na constante `list: string[]` com base no índice fornecido, e em seguida chamar a função `saveToFile()` para salvar a lista atualizada no arquivo JSON. A função deve retornar uma `Promise<void>` indicando que a operação foi concluída.
 
@@ -247,7 +252,7 @@ Entendendo a função `removeItem()`:
 - Se o índice for válido, a função remove o item da constante `list` na posição especificada pelo índice usando o método `splice()`, que remove um elemento do array.
 - Após remover o item da lista, a função chama `await saveToFile()` para salvar a lista atualizada no arquivo JSON.
 
-### Exportando as funções principais
+#### Exportando as funções principais
 
 Para que as funções aqui criadas possam ser utilizadas em outros arquivos, como o `cli.ts`, é necessário exportá-las. Neste caso, utiliza-se `export default` para exportar um objeto com as funções principais.
 
@@ -260,7 +265,7 @@ export default { addItem, getItems, updateItem, removeItem };
 > 
 > Neste exemplo, adota-se a exportação padrão (`export default`), em que todas as funções principais são exportadas como um objeto. Dessa forma, ao importar esse módulo em outro arquivo, torna-se possível acessar as funções principais por meio de um espaço de nome (namespace) definido pelo nome do módulo importado. Exemplo: `import todo from './core';`, com acesso às funções por meio de `todo.addItem()`, `todo.getItems()` etc. Note-se que `todo`, nesse caso, é apenas um nome de variável que representa o módulo importado e poderia ser substituído por qualquer outro nome, como `import core from './core';`, com acesso às funções por `core.addItem()`, `core.getItems()` etc. A escolha do nome é uma questão de convenção e preferência, mas a consistência ao longo do projeto é importante.
 
-### O arquivo `cli.ts` (lógica de interação com o usuário via terminal):
+#### O arquivo `cli.ts` (lógica de interação com o usuário via terminal):
 
 Este arquivo deve conter a lógica para ler os comandos do terminal e chamar as funções do `core.ts` de acordo com os comandos recebidos. Note que estamos separando a lógica de negócios (core) da lógica de interação com o usuário (cli). Isso significa que todo o funcionamento da aplicação, como manipulação de dados, leitura e escrita de arquivos, etc., deve estar no `core.ts`, enquanto o `cli.ts` deve ser responsável apenas por "entender" os comandos do usuário pelo terminal.
 
@@ -276,7 +281,7 @@ Após o término da criação deste arquivo, a aplicação será capaz de ser ex
 > [!NOTE]
 > Na lista de comandos, foram adicionados valores com `<` e `>`. Estes devem ser substituídos pelos valores reais ao executar os comandos. Números podem ser utilizados diretamente, porém textos, principalmente os que contêm espaços, devem ser enviados entre aspas.
 
-#### Importando as funções do `core.ts` e lendo os comandos do terminal
+##### Importando as funções do `core.ts` e lendo os comandos do terminal
 
 No início do arquivo `cli.ts`, deve ser feita a importação das funções principais do `core.ts`, para que possam ser utilizadas para manipular a lista de tarefas com base nos comandos recebidos do terminal. Em seguida, deve ser lido o comando do terminal utilizando `process.argv`, que é um array que contém os argumentos passados para o processo Node.js (ou Bun, neste caso) a partir do terminal. O comando principal deve ser lido a partir do índice 2 do array `process.argv`, pois os índices 0 e 1 são reservados para o caminho do executável e o caminho do arquivo em execução (como dito: `process.argv[0]` é o caminho do Bun e `process.argv[1]` é o caminho do arquivo `cli.ts`), enquanto os comandos personalizados começam a partir do índice 2.
 
@@ -289,7 +294,7 @@ Entendendo a importação e leitura de comandos:
 - A linha `import todo from './core.ts';` importa o módulo `core.ts` e atribui o objeto exportado a uma variável chamada `todo`. Como `core.ts` exporta um objeto contendo as funções principais, a variável `todo` agora tem acesso a essas funções, como `todo.addItem()`, `todo.getItems()`, etc.
 - A linha `const command = process.argv[2];` lê o comando do terminal a partir do array `process.argv`, especificamente do índice 2, onde os comandos personalizados começam. O comando lido é armazenado na constante `command`, que será utilizada posteriormente para determinar qual ação executar com base no comando recebido do terminal.
 
-#### Implementando a lógica para o comando `add`
+##### Implementando a lógica para o comando `add`
 
 A lógica para o comando `add` deve verificar se o comando recebido é igual a "add", e caso seja, deve ler o item a ser adicionado a partir do índice 3 do array `process.argv`, pois o índice 2 é reservado para o comando "add". Em seguida, deve chamar a função `addItem()` do módulo `core.ts` para adicionar o item à lista de tarefas, e tratar possíveis erros que possam ocorrer durante essa operação.
 
@@ -315,7 +320,7 @@ Entendendo a lógica para o comando `add`:
 - Se o item for válido, a função chama `await todo.addItem(item);` para adicionar o item à lista de tarefas usando a função `addItem()` do módulo `core.ts`.
 - Após adicionar o item, a função exibe uma mensagem de sucesso no console indicando que o item foi adicionado com sucesso, e então encerra o processo com um código de saída 0, indicando que a operação foi concluída com sucesso.
 
-#### Implementando a lógica para o comando `list`
+##### Implementando a lógica para o comando `list`
 
 Este comando deve verificar se o comando recebido é igual a "list" e, caso seja, deve chamar a função `getItems()` do módulo `core.ts` para obter a lista de tarefas e, em seguida, exibir essa lista no console.
 
@@ -341,7 +346,7 @@ Entendendo a lógica para o comando `list`:
 - Se a lista não estiver vazia, a função exibe uma mensagem no console indicando que a lista de itens será exibida, em seguida utiliza o método `forEach()` para iterar sobre os itens da lista, exibindo cada item com seu índice correspondente no console. O formato de exibição é `${index}: ${item}`, onde `index` é o índice do item na lista e `item` é o conteúdo do item.
 - Após exibir a lista de itens, a função encerra o processo com um código de saída 0, indicando que a operação foi concluída com sucesso.
 
-#### Implementando a lógica para o comando `update`
+##### Implementando a lógica para o comando `update`
 
 Este comando deve verificar se o comando recebido é igual a "update", e caso seja, deve ler o índice do item a ser atualizado a partir do índice 3 do array `process.argv`, e o novo item a partir do índice 4 do array `process.argv`. Em seguida, deve chamar a função `updateItem()` do módulo `core.ts` para atualizar o item na lista de tarefas, e tratar possíveis erros que possam ocorrer durante essa operação.
 
@@ -381,7 +386,7 @@ Entendendo a lógica para o comando `update`:
 - Se a atualização for bem-sucedida, a função exibe uma mensagem no console indicando que o item no índice especificado foi atualizado para o novo item, e então encerra o processo com um código de saída 0, indicando que a operação foi concluída com sucesso.
 - Se ocorrer um erro durante a atualização, o erro é capturado no bloco `catch`, a mensagem de erro é exibida no console, e o processo é encerrado com um código de saída 1, indicando que houve um erro.
 
-#### Implementando a lógica para o comando `remove`
+##### Implementando a lógica para o comando `remove`
 
 Este comando deve verificar se o comando recebido é igual a "remove", e caso seja, deve ler o índice do item a ser removido a partir do índice 3 do array `process.argv`. Em seguida, deve chamar a função `removeItem()` do módulo `core.ts` para remover o item da lista de tarefas, e tratar possíveis erros que possam ocorrer durante essa operação.
 
@@ -419,7 +424,7 @@ Entendendo a lógica para o comando `remove`:
 - Se a remoção for bem-sucedida, a função exibe uma mensagem no console indicando que o item no índice especificado foi removido com sucesso, e então encerra o processo com um código de saída 0, indicando que a operação foi concluída com sucesso.
 - Se ocorrer um erro durante a remoção, o erro é capturado no bloco `catch`, a mensagem de erro é exibida no console, e o processo é encerrado com um código de saída 1, indicando que houve um erro.
 
-#### Lógica para comando desconhecido
+##### Lógica para comando desconhecido
 
 Caso o comando recebido do terminal não seja nenhum dos comandos esperados ("add", "list", "update", "remove"), a aplicação deve exibir uma mensagem de erro indicando que o comando é desconhecido, e encerrar o processo com um código de saída 1, indicando que houve um erro.
 
@@ -428,7 +433,7 @@ console.error("Comando desconhecido. Use 'add', 'list', 'update' ou 'remove'.");
 process.exit(1);
 ```
 
-#### Código completo do arquivo `cli.ts`
+##### Código completo do arquivo `cli.ts`
 
 ```typescript
 import todo from './core.ts';
@@ -512,7 +517,7 @@ console.error("Comando desconhecido. Use 'add', 'list', 'update' ou 'remove'.");
 process.exit(1);
 ```
 
-### Comando para executar a aplicação no terminal
+#### Comando para executar a aplicação no terminal
 
 Para executar a aplicação no terminal, podem ser utilizados os seguintes comandos:
 
@@ -521,7 +526,7 @@ Para executar a aplicação no terminal, podem ser utilizados os seguintes coman
 - `bun cli.ts update 0 "Tarefa atualizada"`: para atualizar um item na lista de tarefas
 - `bun cli.ts remove 0`: para remover um item da lista de tarefas
 
-### Resumo da Parte 1
+#### Resumo da Parte 1
 
 Ao final desta etapa, espera-se que tenham sido compreendidos os seguintes pontos:
 
@@ -532,7 +537,7 @@ Ao final desta etapa, espera-se que tenham sido compreendidos os seguintes ponto
 
 Com essa base, a Parte 2 avança para uma organização orientada a objetos.
 
-### Atividade de verificação de conhecimento
+#### Atividade de verificação de conhecimento
 
 Recomenda-se a leitura integral do código, com verificação de entendimento de todas as etapas realizadas. Em seguida, pode-se aplicar o conhecimento adquirido por meio da adição de uma pequena funcionalidade ao sistema. As sugestões são:
 
@@ -547,29 +552,29 @@ Recomenda-se a leitura integral do código, com verificação de entendimento de
 
 Pode-se escolher uma ou mais sugestões e implementá-las no código existente. Convém manter os padrões já estabelecidos: lógica de negócios em `core.ts` e interface de terminal em `cli.ts`.
 
-## Atividade 1 / Parte 2: Aplicação terminal - com orientação a objetos
+### Atividade 1 / Parte 2: Aplicação terminal - com orientação a objetos
 
 Nesta etapa, a aplicação da Parte 1 será refatorada para utilizar classes e objetos. Em vez de trabalhar apenas com funções soltas e arrays de strings, cada tarefa passará a ser representada como uma instância da classe `Item`, e a lista de tarefas como uma instância da classe `ToDo`.
 
 Essa mudança permite organizar melhor o código, separar responsabilidades e preparar a aplicação para evoluções futuras. Outro ponto importante é que, nesta versão, a lista não está mais presa a um único arquivo JSON fixo: o caminho do arquivo passa a ser informado no terminal, e cada instância de `ToDo` gerencia seu próprio arquivo.
 
-## Estrutura da solução
+#### Estrutura da solução
 
 Nesta Parte 2, mantém-se a separação entre a lógica de negócios e a lógica de interação com o terminal:
 
 - `core.ts`: contém as classes `Item` e `ToDo`, responsáveis pelos dados e pelas operações da lista.
 - `cli.ts`: interpreta os argumentos do terminal, cria os objetos necessários e chama os métodos definidos em `core.ts`.
 
-## O arquivo `core.ts` (lógica de negócios orientada a objetos)
+#### O arquivo `core.ts` (lógica de negócios orientada a objetos)
 
 Em vez de exportar apenas funções, agora exportamos duas classes:
 
 - `Item`: representa uma tarefa individual.
 - `ToDo`: representa uma lista de tarefas associada a um arquivo JSON.
 
-### Classe `Item`
+##### Classe `Item`
 
-A classe `Item` é responsável por representar uma tarefa individual. No código atual, ela armazena apenas a descrição da tarefa.
+A classe `Item` é responsável por representar uma tarefa individual. No código atual, ela armazena a descrição da tarefa e possui um método para atualizar essa descrição. Além disso, tem um método `toJSON()` para facilitar a conversão do objeto em um formato adequado para salvar no arquivo JSON.
 
 ```typescript
 export class Item {
@@ -598,9 +603,12 @@ Entendendo a classe `Item`:
 - O método `updateDescription(newDescription: string)` permite alterar a descrição do item já existente.
 - O método `toJSON()` devolve um objeto literal com os dados do item. Isso facilita a serialização para JSON ao salvar no arquivo.
 
-### Classe `ToDo`
+> [!NOTE]
+> O método `toJSON()` é uma convenção em JavaScript/TypeScript que é automaticamente chamado quando um objeto é convertido para JSON, como acontece com `JSON.stringify()`. Ele permite controlar exatamente quais dados do objeto serão incluídos na representação JSON, o que é útil para evitar expor propriedades privadas ou métodos que não devem ser salvos.
 
-A classe `ToDo` representa uma lista de tarefas e concentra as operações principais da aplicação: carregar os dados, salvar, adicionar, listar, atualizar, remover e buscar itens.
+##### Classe `ToDo`
+
+A classe `ToDo` representa uma lista de tarefas propriamente dita e concentra as operações principais da aplicação: carregar os dados, salvar, adicionar, listar, atualizar (*ao encontrar o item e chamar o método `updateDescription` do próprio item*), remover e buscar itens.
 
 ```typescript
 export class ToDo {
@@ -671,7 +679,7 @@ export class ToDo {
 }
 ```
 
-### Propriedades da classe `ToDo`
+##### Propriedades da classe `ToDo`
 
 No início da classe, temos duas propriedades privadas:
 
@@ -686,7 +694,7 @@ Entendendo essas propriedades:
 - `items` guarda uma `Promise<Item[]>`, isto é, uma promessa que resultará em um array de objetos `Item`.
 - Como os dados precisam ser lidos do arquivo de forma assíncrona, a carga inicial é feita por `loadFromFile()` dentro do construtor.
 
-### O construtor da classe `ToDo`
+##### O construtor da classe `ToDo`
 
 ```typescript
 constructor(filepath: string) {
@@ -701,11 +709,11 @@ Entendendo o construtor:
 - Esse valor é armazenado em `this.filepath`.
 - Em seguida, `this.items` recebe o resultado de `this.loadFromFile()`, iniciando a leitura dos dados já existentes.
 
-## Métodos privados de persistência
+#### Métodos privados de persistência
 
 Assim como na Parte 1, ainda é necessário ler e escrever dados em arquivo. A diferença é que, nesta versão, essa responsabilidade fica encapsulada dentro da classe `ToDo`, por meio de métodos privados.
 
-### Método `loadFromFile()`
+##### Método `loadFromFile()`
 
 ```typescript
 private async loadFromFile() {
@@ -727,7 +735,7 @@ Entendendo o método `loadFromFile()`:
 > [!NOTE]
 > Esse passo de reconstruir os objetos com `new Item(...)` é importante. Ao ler o JSON do arquivo, obtêm-se apenas objetos literais. Para recuperar os métodos da classe, como `updateDescription()`, é necessário criar novas instâncias de `Item`.
 
-### Método `saveToFile()`
+##### Método `saveToFile()`
 
 ```typescript
 private async saveToFile() {
@@ -749,9 +757,9 @@ Entendendo o método `saveToFile()`:
 - Por fim, grava esse conteúdo no arquivo correspondente com `Bun.write()`.
 - Como o método está marcado como `private`, ele só pode ser chamado dentro da própria classe `ToDo`.
 
-## Métodos principais da lista de tarefas
+#### Métodos principais da lista de tarefas
 
-### Método `addItem(item: Item)`
+##### Método `addItem(item: Item)`
 
 ```typescript
 async addItem(item: Item) {
@@ -768,7 +776,7 @@ Entendendo o método `addItem()`:
 - Adiciona o novo item ao array.
 - Salva a lista atualizada no arquivo.
 
-### Método `getItems()`
+##### Método `getItems()`
 
 ```typescript
 async getItems() {
@@ -781,7 +789,7 @@ Entendendo o método `getItems()`:
 - Retorna os itens carregados na lista.
 - O retorno é assíncrono porque os dados podem ainda estar sendo carregados do arquivo.
 
-### Método `updateItem(index: number, newItem: Item)`
+##### Método `updateItem(index: number, newItem: Item)`
 
 ```typescript
 async updateItem(index: number, newItem: Item) {
@@ -800,7 +808,7 @@ Entendendo o método `updateItem()`:
 - Substitui o item antigo pelo novo.
 - Salva a alteração no arquivo.
 
-### Método `removeItem(index: number)`
+##### Método `removeItem(index: number)`
 
 ```typescript
 async removeItem(index: number) {
@@ -819,11 +827,11 @@ Entendendo o método `removeItem()`:
 - Remove o item usando `splice()`.
 - Persiste a lista atualizada no arquivo.
 
-### Métodos de busca
+#### Métodos de busca
 
 Além das operações principais, a classe também possui métodos de busca.
 
-#### Método `findItemByDescription(description: string)`
+###### Método `findItemByDescription(description: string)`
 
 ```typescript
 async findItemByDescription(description: string): Promise<Item | undefined> {
@@ -834,7 +842,7 @@ async findItemByDescription(description: string): Promise<Item | undefined> {
 
 Esse método percorre a lista e retorna o primeiro item cuja descrição seja igual ao texto informado.
 
-#### Método `findItemByIndex(index: number)`
+###### Método `findItemByIndex(index: number)`
 
 ```typescript
 async findItemByIndex(index: number): Promise<Item | undefined> {
@@ -847,7 +855,7 @@ async findItemByIndex(index: number): Promise<Item | undefined> {
 
 Esse método retorna o item localizado em um índice específico da lista.
 
-## O arquivo `cli.ts` (interface de terminal)
+#### O arquivo `cli.ts` (interface de terminal)
 
 Agora que a lógica de negócios foi encapsulada em classes, o `cli.ts` passa a ter a responsabilidade de:
 
@@ -911,7 +919,7 @@ console.error("Comando desconhecido. Use 'add', 'list', 'update' ou 'remove'.");
 process.exit(1);
 ```
 
-### Importando as classes e lendo os argumentos
+##### Importando as classes e lendo os argumentos
 
 ```typescript
 import { ToDo, Item } from './core.ts';
@@ -929,7 +937,7 @@ Entendendo esse trecho:
 
 Isso significa que, nesta Parte 2, o formato do comando mudou. Anteriormente, utilizava-se algo como `bun cli.ts add "Tarefa"`. Agora, também é necessário informar o arquivo da lista, por exemplo: `bun cli.ts lista.json add "Tarefa"`.
 
-### Criando a instância da lista
+#### Criando a instância da lista
 
 ```typescript
 if (!file) {
@@ -946,7 +954,7 @@ Entendendo esse trecho:
 - Se não foi, exibe erro e encerra a execução.
 - Caso o caminho exista, o programa cria um objeto `ToDo`, que passa a representar a lista de tarefas contida naquele arquivo.
 
-### Implementando o comando `add`
+#### Implementando o comando `add`
 
 ```typescript
 if (command === "add") {
@@ -972,7 +980,7 @@ Entendendo a lógica do comando `add`:
 - Esse objeto é enviado para `todo.addItem(item)`.
 - Ao final, uma mensagem de sucesso é exibida.
 
-### Implementando o comando `list`
+#### Implementando o comando `list`
 
 ```typescript
 if (command === "list") {
@@ -996,7 +1004,7 @@ Entendendo a lógica do comando `list`:
 - Caso haja itens, percorre o array com `forEach()`.
 - Cada item é exibido usando `item.toJSON().description`, pois a descrição está encapsulada dentro do objeto `Item`.
 
-### Comandos `update` e `remove`
+#### Comandos `update` e `remove`
 
 No código atual, os blocos desses comandos já estão reservados, mas ainda não foram implementados:
 
@@ -1012,7 +1020,7 @@ if (command === "remove") {
 
 Isso é útil para mostrar que a estrutura da aplicação já está preparada para evoluir. A lógica de negócios necessária já existe em `core.ts`, por meio dos métodos `updateItem()` e `removeItem()`. O próximo passo seria completar a interface do terminal para receber os argumentos, validar os dados e chamar esses métodos.
 
-### Lógica para comando desconhecido
+#### Lógica para comando desconhecido
 
 ```typescript
 console.error("Comando desconhecido. Use 'add', 'list', 'update' ou 'remove'.");
@@ -1021,7 +1029,7 @@ process.exit(1);
 
 Se o comando informado não corresponder a nenhuma das opções tratadas, a aplicação exibe uma mensagem de erro e encerra a execução.
 
-## Como executar a aplicação nesta Parte 2
+@## Como executar a aplicação nesta Parte 2
 
 Como agora o caminho do arquivo é informado no terminal, os comandos passam a seguir este formato:
 
@@ -1031,7 +1039,7 @@ Como agora o caminho do arquivo é informado no terminal, os comandos passam a s
 > [!NOTE]
 > No estado atual do código, apenas os comandos `add` e `list` estão implementados em `cli.ts`. Os métodos de atualização e remoção já existem na classe `ToDo`, mas a interface de terminal para esses comandos ainda precisa ser concluída.
 
-## Resumo da Parte 2
+#### Resumo da Parte 2
 
 Ao final desta etapa, terão sido praticados os seguintes aspectos:
 
@@ -1044,7 +1052,7 @@ Ao final desta etapa, terão sido praticados os seguintes aspectos:
 
 Com essa base, a aplicação fica mais preparada para crescer. Nas próximas evoluções, é natural adicionar mais dados aos itens, como status, data de criação, prioridade ou suporte a múltiplas operações completas no CLI.
 
-### Atividade de verificação de conhecimento
+#### Atividade de verificação de conhecimento
 
 Recomenda-se a leitura do código da Parte 2 e a conclusão da interface de terminal, de modo a acompanhar a modelagem orientada a objetos. Algumas sugestões:
 
