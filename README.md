@@ -13,7 +13,7 @@
   - `core.ts` (lógica de negócios)
   - `cli.ts` (lógica de interação com o usuário via terminal)
   - Adicionar funcio
-- ☑ `[7 de Abril]` Atividade / Parte 2: Aplicação terminal - com orientação a objetos
+- ☑ `[14 de Abril]` Atividade / Parte 2: Aplicação terminal - com orientação a objetos
   - `core.ts` (lógica de negócios orientada a objetos)
   - `cli.ts` (lógica de interação com o usuário via terminal)
 - ☐ `[ ]` Atividade / Parte 3: Aplicação web - com orientação a objetos
