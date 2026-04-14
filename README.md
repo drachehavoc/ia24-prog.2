@@ -89,8 +89,7 @@ Com o VS Code aberto:
 3. Executar `bun init -y`.
 4. Confirmar as opções de TypeScript.
 
-> **⚠️ Nota:**
-> ---
+> [!NOTE]
 > Recomenda-se a leitura da documentação do Bun sobre o comando `bun init`, para melhor compreensão de seu funcionamento e das opções disponíveis: [Bun: bun init](https://bun.sh/docs/runtime/templating/init).
 
 ## Atividade 1
