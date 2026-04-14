@@ -1,21 +1,26 @@
+
+
+
+
+
 # Entregaveis - 1° Trimestre
 
 - ☑ Garatujas
 - ☑ Revisão HTML, CSS
   - ☑ Interface Web para o Projeto - Cadastro de Termos Técnicos
-- ☑ Atividade / Parte 1: Aplicação terminal - sem orientação a objetos
+- ☑ [31 de Março] Atividade / Parte 1: Aplicação terminal - sem orientação a objetos
   - `core.ts` (lógica de negócios)
   - `cli.ts` (lógica de interação com o usuário via terminal)
   - Adicionar funcio
-- ☐ Atividade / Parte 2: Aplicação terminal - com orientação a objetos
+- ☑ [7 de Abril] Atividade / Parte 2: Aplicação terminal - com orientação a objetos
   - `core.ts` (lógica de negócios orientada a objetos)
   - `cli.ts` (lógica de interação com o usuário via terminal)
-- ☐ Atividade / Parte 3: Aplicação web - com orientação a objetos
+- ☐ [ ] Atividade / Parte 3: Aplicação web - com orientação a objetos
   - `core.ts` (lógica de negócios orientada a objetos)
   - `server.ts` (servidor para lidar com requisições HTTP)
   - `index.html` (interface web para interagir com a lista de tarefas)
   - `style.css` (estilos para a interface web)
-- ☐ Atividade / Parte 4: Aplicação web - com orientação a objetos e banco de dados sqlite
+- ☐ [ ] Atividade / Parte 4: Aplicação web - com orientação a objetos e banco de dados sqlite
   - `core.ts` (lógica de negócios orientada a objetos, utilizando banco de dados sqlite para persistência dos dados)
   - `server.ts` (servidor para lidar com requisições HTTP)
   - `index.html` (interface web para interagir com a lista de tarefas)
