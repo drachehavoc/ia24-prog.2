@@ -1,8 +1,3 @@
-
-
-
-
-
 # Entregaveis - 1° Trimestre
 
 - ☑ `[primeira semana de maio]` Garatujas
@@ -1287,9 +1282,9 @@ Nesta parte, não implementaremos a interface web (HTML, CSS, JavaScript) ainda.
 **4. Listar novamente para verificar (GET /items)**
 - Deve retornar os dois itens adicionados
 
-**5. Atualizar um item (PUT /items/0)**
+**5. Atualizar um item (PUT /items?index=0)**
 - Método: `PUT`
-- URL: `http://localhost:3000/items/0`
+- URL: `http://localhost:3000/items?index=0`
 - Headers: `Content-Type: application/json`
 - Body (JSON):
 ```json
@@ -1299,9 +1294,9 @@ Nesta parte, não implementaremos a interface web (HTML, CSS, JavaScript) ainda.
 ```
 - Resultado esperado: Status 200 com mensagem de sucesso
 
-**6. Remover um item (DELETE /items/1)**
+**6. Remover um item (DELETE /items?index=1)**
 - Método: `DELETE`
-- URL: `http://localhost:3000/items/1`
+- URL: `http://localhost:3000/items?index=1`
 - Resultado esperado: Status 200 com mensagem de sucesso
 
 **7. Listar novamente para confirmar a remoção (GET /items)**
