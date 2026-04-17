@@ -1069,3 +1069,314 @@ Recomenda-se a leitura do código da Parte 2 e a conclusão da interface de term
 - Melhorar a exibição dos itens no terminal
 
 O ponto principal desta Parte 2 é perceber como a orientação a objetos reorganiza o mesmo problema da Parte 1 em torno de classes e objetos, deixando o código mais preparado para futuras extensões.
+
+### Atividade 1 / Parte 3: Aplicação RestAPI - com orientação a objetos
+
+Nesta parte, o foco é expandir a aplicação de gerenciamento de tarefas para a plataforma web, transformando-a em uma aplicação cliente-servidor. A lógica de negócios orientada a objetos desenvolvida na Parte 2 será mantida e reutilizada no servidor, enquanto uma interface web será criada para permitir que os usuários interajam com a aplicação através de um navegador.
+
+A aplicação será estruturada da seguinte forma:
+
+- **Backend (servidor)**: Utilizando TypeScript e um framework web leve (como Elysia ou similar), o servidor implementará uma API REST que expõe os mesmos comandos da aplicação CLI (adicionar, listar, atualizar e remover itens).
+- **Reutilização da classe `ToDo`**: A classe desenvolvida na Parte 2 será importada e utilizada no servidor para gerenciar a persistência dos dados.
+
+> [!NOTE]
+> Nesta etapa, o foco é consolidar a API REST e suas operações. A interface web (frontend) será implementada na próxima parte do curso, utilizando HTML, CSS e JavaScript para consumir a API criada aqui. Por hora os testes podem ser feitos utilizando o plugin do vscode "Thunder Client" ou ferramentas como Postman para enviar requisições HTTP ao servidor.
+
+#### Arquivos necessários
+
+Para esta parte, serão necessários os seguintes arquivos:
+
+- `core.ts` (mantido da Parte 2, com a classe `Item` e `ToDo`)
+- `server.ts` (novo arquivo com a lógica do servidor REST)
+
+> [!NOTE]
+> Os arquivos `index.html`, `style.css` e `app.js` (frontend) serão implementados na próxima parte do curso. Nesta etapa, o foco é consolidar a API REST e suas operações.
+
+#### O arquivo `server.ts` (servidor REST)
+
+O servidor REST deve expor as seguintes rotas:
+
+- `GET /items`: retorna a lista de todos os itens
+- `POST /items`: adiciona um novo item à lista (recebe JSON com a descrição)
+- `PUT /items?index=0`: atualiza um item existente (recebe JSON com a nova descrição)
+- `DELETE /items?index=0`: remove um item da lista
+
+> [!NOTE]
+> **Revisão: Protocolo HTTP**
+> 
+> As rotas acima utilizam métodos HTTP padrão (GET, POST, PUT, DELETE) e códigos de status HTTP para comunicação cliente-servidor. Para uma compreensão mais completa sobre o protocolo HTTP, métodos de requisição, códigos de status e headers, consulte a documentação da MDN:
+> - [Visão Geral HTTP (MDN)](https://developer.mozilla.org/pt-BR/docs/Web/HTTP)
+> - [Métodos de Requisição HTTP (MDN)](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Methods)
+> - [Códigos de Status HTTP (MDN)](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status)
+
+A seguir, um exemplo de implementação básica do servidor usando Bun:
+
+```typescript
+import { ToDo } from "./core";
+import { Item } from "./core";
+
+const filepath = "./lista.json";
+const todo = new ToDo(filepath);
+const port = 3000;
+
+const server = Bun.serve({
+  port: port,
+  async fetch(request: Request) {
+    const url = new URL(request.url);
+    const method = request.method;
+    const pathname = url.pathname;
+    const searchParams = url.searchParams;
+
+    // GET /items - listar todos os itens
+    if (pathname === "/items" && method === "GET") {
+      const items = await todo.getItems();
+      const itemsData = items.map(item => item.toJSON());
+      return new Response(JSON.stringify(itemsData), {
+        headers: { "Content-Type": "application/json" }
+      });
+    }
+
+    // POST /items - adicionar novo item
+    if (pathname === "/items" && method === "POST") {
+      try {
+        const body = await request.json();
+        const { description } = body;
+        
+        if (!description) {
+          return new Response(JSON.stringify({ error: "Description is required" }), {
+            status: 400,
+            headers: { "Content-Type": "application/json" }
+          });
+        }
+
+        const item = new Item(description);
+        await todo.addItem(item);
+        
+        return new Response(JSON.stringify({ message: "Item added successfully", item: item.toJSON() }), {
+          status: 201,
+          headers: { "Content-Type": "application/json" }
+        });
+      } catch (error) {
+        return new Response(JSON.stringify({ error: "Failed to add item" }), {
+          status: 500,
+          headers: { "Content-Type": "application/json" }
+        });
+      }
+    }
+
+    // PUT /items?index=0 - atualizar item
+    if (pathname === "/items" && method === "PUT") {
+      try {
+        const index = parseInt(searchParams.get("index") || "");
+        
+        if (isNaN(index)) {
+          return new Response(JSON.stringify({ error: "Invalid index parameter" }), {
+            status: 400,
+            headers: { "Content-Type": "application/json" }
+          });
+        }
+
+        const body = await request.json();
+        const { description } = body;
+
+        if (!description) {
+          return new Response(JSON.stringify({ error: "Description is required" }), {
+            status: 400,
+            headers: { "Content-Type": "application/json" }
+          });
+        }
+
+        const item = new Item(description);
+        await todo.updateItem(index, item);
+
+        return new Response(JSON.stringify({ message: "Item updated successfully", item: item.toJSON() }), {
+          status: 200,
+          headers: { "Content-Type": "application/json" }
+        });
+      } catch (error) {
+        return new Response(JSON.stringify({ error: "Failed to update item" }), {
+          status: 500,
+          headers: { "Content-Type": "application/json" }
+        });
+      }
+    }
+
+    // DELETE /items?index=0 - remover item
+    if (pathname === "/items" && method === "DELETE") {
+      try {
+        const index = parseInt(searchParams.get("index") || "");
+        
+        if (isNaN(index)) {
+          return new Response(JSON.stringify({ error: "Invalid index parameter" }), {
+            status: 400,
+            headers: { "Content-Type": "application/json" }
+          });
+        }
+
+        await todo.removeItem(index);
+        
+        return new Response(JSON.stringify({ message: "Item removed successfully" }), {
+          status: 200,
+          headers: { "Content-Type": "application/json" }
+        });
+      } catch (error) {
+        return new Response(JSON.stringify({ error: "Failed to remove item" }), {
+          status: 500,
+          headers: { "Content-Type": "application/json" }
+        });
+      }
+    }
+
+    return new Response(JSON.stringify({ error: "Not found" }), {
+      status: 404,
+      headers: { "Content-Type": "application/json" }
+    });
+  }
+});
+
+console.log(`Servidor rodando em http://localhost:${port}`);
+```
+
+Entendendo o servidor:
+
+- O servidor é inicializado com `Bun.serve()` na porta 3000.
+- Cada rota é verificada pela combinação de `pathname` e `method`.
+- O método `request.json()` extrai os dados da requisição.
+- Cada resposta retorna um JSON com status HTTP apropriado (200, 201, 400, 404, 500).
+- Os arquivos estáticos (`index.html` e `style.css`) são servidos automaticamente.
+
+#### Testando a API REST com Thunder Client
+
+Nesta parte, não implementaremos a interface web (HTML, CSS, JavaScript) ainda. Em vez disso, testaremos a API REST usando a extensão **Thunder Client** no VS Code, o que permite validar todos os endpoints antes de criar a interface web.
+
+**Como instalar e usar Thunder Client:**
+
+1. Instale a extensão **Thunder Client** no VS Code (procure por "Thunder Client" no marketplace)
+2. Após instalar, abra a extensão e crie uma nova requisição
+
+**Testes recomendados:**
+
+**1. Listar todos os itens (GET /items)**
+- Método: `GET`
+- URL: `http://localhost:3000/items`
+- Resultado esperado: Uma lista de itens em JSON (ou lista vazia se nenhum item foi adicionado)
+
+**2. Adicionar um novo item (POST /items)**
+- Método: `POST`
+- URL: `http://localhost:3000/items`
+- Headers: `Content-Type: application/json`
+- Body (JSON):
+```json
+{
+  "description": "Primeira tarefa"
+}
+```
+- Resultado esperado: Status 201 com mensagem de sucesso e o item criado
+
+**3. Adicionar outro item (POST /items)**
+- Método: `POST`
+- URL: `http://localhost:3000/items`
+- Headers: `Content-Type: application/json`
+- Body (JSON):
+```json
+{
+  "description": "Segunda tarefa"
+}
+```
+
+**4. Listar novamente para verificar (GET /items)**
+- Deve retornar os dois itens adicionados
+
+**5. Atualizar um item (PUT /items/0)**
+- Método: `PUT`
+- URL: `http://localhost:3000/items/0`
+- Headers: `Content-Type: application/json`
+- Body (JSON):
+```json
+{
+  "description": "Primeira tarefa - ATUALIZADA"
+}
+```
+- Resultado esperado: Status 200 com mensagem de sucesso
+
+**6. Remover um item (DELETE /items/1)**
+- Método: `DELETE`
+- URL: `http://localhost:3000/items/1`
+- Resultado esperado: Status 200 com mensagem de sucesso
+
+**7. Listar novamente para confirmar a remoção (GET /items)**
+- Deve retornar apenas um item (o primeiro, modificado)
+
+**Testando erros:**
+
+**8. Tentar adicionar sem descrição (POST /items)**
+- Body (JSON):
+```json
+{
+  "description": ""
+}
+```
+- Ou: Body vazio `{}`
+- Resultado esperado: Status 400 com mensagem de erro
+
+**9. Tentar acessar rota inexistente (GET /invalid)**
+- Resultado esperado: Status 404 com mensagem de erro
+
+## Como executar a aplicação na Parte 3
+
+1. Certifique-se de que todos os arquivos estão na pasta do projeto:
+   - `core.ts` (reutilizado da Parte 2)
+   - `server.ts` (novo)
+
+2. Para iniciar o servidor, execute o seguinte comando no terminal:
+   ```bash
+   bun server.ts
+   ```
+   ou se preferir adicione `--watch` para reiniciar o servidor automaticamente sempre que um arquivo do projeto for modificado:
+   ```bash
+   bun --watch server.ts
+   ```
+
+3. O servidor estará disponível em `http://localhost:3000`
+
+> [!TIP]
+> **Como copiar os arquivos gerados completos:**
+> 
+> Para reutilizar os arquivos já desenvolvidos:
+> 1. Copie o arquivo `core.ts` da Parte 2 para o diretório da Parte 3
+> 2. Crie os novos arquivos (`server.ts`, `index.html`, `style.css`, `app.js`) conforme o código completo apresentado acima
+> 3. Coloque todos os arquivos no mesmo diretório do projeto
+> 4. Execute `bun server.ts` para iniciar a aplicação web
+> 
+> Alternativamente, você pode clonar ou copiar todo o projeto da Parte 2 e adicionar apenas os novos arquivos necessários para a Parte 3.
+
+#### Resumo da Parte 3
+
+Ao final desta etapa, terão sido praticados os seguintes aspectos:
+
+1. Criação de um servidor REST utilizando Bun
+2. Reutilização de código orientado a objetos em novos contextos
+3. Implementação de uma API REST com operações CRUD (Create, Read, Update, Delete)
+4. Comunicação cliente-servidor via HTTP e JSON
+5. Tratamento de erros em operações assíncronas
+6. Testes de endpoints REST usando ferramentas como Thunder Client, Postman ou Insomnia.
+
+#### Atividade de verificação de conhecimento
+
+**Atividade de Fixação: Extensão da API REST**
+
+Implemente as seguintes melhorias na sua aplicação para reforçar os conceitos de REST:
+
+1. **Adicione validação de campos**: Implemente validação nos endpoints para garantir que os dados enviados possuem os campos obrigatórios e tipos corretos. Retorne um código de status `400 (Bad Request)` quando a validação falhar.
+
+2. **Implemente paginação**: Modifique o endpoint GET `/contatos` para aceitar parâmetros de query `?page=1&limit=10`, retornando apenas os registros solicitados.
+
+3. **Adicione filtros REST**: Crie um novo endpoint `/contatos/buscar?nome=...` para filtrar contatos por nome usando a API REST.
+
+4. **Implemente tratamento de conflitos**: No endpoint PUT ou PATCH, adicione validação para evitar sobrescrever dados e retorne `409 (Conflict)` quando necessário.
+
+5. **Adicione logging de requisições**: Crie um middleware que registra em console cada requisição recebida (método, endpoint, status da resposta) para fins de debugging.
+
+**Desafio extra**: Implemente autenticação básica (HTTP Basic Auth) em alguns endpoints, exigindo um token ou credencial simples.
+
+O ponto principal desta Parte 3 é compreender como reutilizar código orientado a objetos em uma arquitetura cliente-servidor, observando a separação clara entre lógica de negócios (backend) e apresentação (frontend). A aplicação agora é acessível via navegador web, oferecendo uma experiência mais intuitiva para o usuário final.
