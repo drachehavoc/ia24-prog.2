@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>Cliente</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+  <pre id="app">
+    ... respostas da API ...
+  </pre>
+
+  <button class="bt-buscar">buscar dados</button>
+  <button class="bt-enviar">enviar dados</button>
+  <button class="bt-atualizar">atualizar dados</button>
+  <button class="bt-patch">patch dados</button>
+  <button class="bt-deletar">deletar dados</button>
+
+  <script>
+    const container = document.querySelector('#app');
+    const btBuscar = document.querySelector('.bt-buscar');
+    const btEnviar = document.querySelector('.bt-enviar');
+    const btAtualizar = document.querySelector('.bt-atualizar');
+    const btPatch = document.querySelector('.bt-patch');
+    const btDeletar = document.querySelector('.bt-deletar');
+
+    btBuscar.addEventListener('click', async () => {
+      const resposta = await fetch('/api/exemplo');
+      const dados = await resposta.text();
+      container.textContent = dados;
+    });
+
+    btEnviar.addEventListener('click', async () => {
+      const resposta = await fetch('/api/exemplo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome: `Novo Dado ${Date.now()}` })
+      });
+      const dados = await resposta.text();
+      container.textContent = dados;
+    });
+
+    btAtualizar.addEventListener('click', async () => {
+      const resposta = await fetch('/api/exemplo/15', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome: `Dado Atualizado ${Date.now()}` })
+      });
+      const dados = await resposta.text();
+      container.textContent = dados;
+    });
+
+    btPatch.addEventListener('click', async () => {
+      const resposta = await fetch('/api/exemplo/15', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idade: 40, nome: 'Dunha' })
+      });
+      const dados = await resposta.text();
+      container.textContent = dados;
+    });
+
+    btDeletar.addEventListener('click', async () => {
+      const resposta = await fetch('/api/exemplo/15', { method: 'DELETE' });
+      const dados = await resposta.text();
+      container.textContent = dados;
+    });
+
+  </script>
+</body>
+</html>

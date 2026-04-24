@@ -1,26 +1,47 @@
 import todo from "./core.ts";
-import { serve } from "bun";
 
+const server = Bun.serve({
+  port: 3000,
+  routes: {
+    "/": new Response(Bun.file("./public/index.html")),
+    "/api/exemplo": {
+      GET: () => new Response(`Essse é o exemplo: ${Date.now()}`),
+      
+      POST: async (req) => {
+        const data = await req.json() as any;
+        data.recebidoEm = new Date().toLocaleDateString("pt-BR");
+        return Response.json(data);
+      },
+    },
 
-const server = serve({
-  port: 3000, 
-  
+    "/api/exemplo/:id": {
+      PUT: async (req) => {
+        const { id } = req.params;
+        const data = await req.json() as any;
+        data.recebidoEm = new Date().toLocaleDateString("pt-BR");
+        data.id = id;
+        return Response.json(data);
+      },
+
+      PATCH: async (req) => {
+        const { id } = req.params;
+        const data = await req.json() as any;
+        data.atualizadoEm = new Date().toLocaleDateString("pt-BR");
+        data.id = id;
+        // verificar quais dados foram enviados e atualizar somente esses campos
+        data.camposAtualizados = Object.keys(data);
+        return Response.json(data);
+      },
+      
+      DELETE: async (req) => {
+        const { id } = req.params;
+        return new Response(`Recurso com id ${id} deletado!`, { status: 200 });
+      },
+    }
+  },
+
   async fetch(req) {
-    const url = new URL(req.url);
-
-    if (url.pathname === "/list") {
-      const list = await todo.getItems();
-      return new Response(JSON.stringify(list), { status: 200 });
-    }
-  
-    if (url.pathname === "/add") {
-      const item = url.searchParams.get("item");
-      await todo.addItem(item);
-      return new Response("Item added successfully", { status: 200 });
-    }
-
-
-    return new Response(`Oi querido! ${url.pathname}`, { status: 200 });
+    return new Response(`Not Found!`, { status: 404 });
   },
 });
 
