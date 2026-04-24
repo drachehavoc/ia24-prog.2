@@ -12,10 +12,10 @@
   - `core.ts` (lógica de negócios orientada a objetos)
   - `cli.ts` (lógica de interação com o usuário via terminal)
 - ☑ `[24 de Abril]` Atividade / Parte 3: Aplicação web - com orientação a objetos
-  - `Backend`
+  - ☑ `Backend`
     - `core.ts` (lógica de negócios orientada a objetos)
     - `api.ts` (servidor para lidar com requisições HTTP)
-  - `Frontend`
+  - ☐ `Frontend`
     - `index.html` (interface web para interagir com a lista de tarefas)
     - `style.css` (estilos para a interface web)
 - ☐ `[ ]` Atividade / Parte 4: Aplicação web - com orientação a objetos e banco de dados sqlite
