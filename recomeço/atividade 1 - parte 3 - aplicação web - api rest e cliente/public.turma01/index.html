@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang='en'>
-
 <head>
   <meta charset='utf-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <title>Exemplo</title>
+  <title>Cliente</title>
   <link rel="stylesheet" href="main.css">
 </head>
-
 <body>
+
   <pre id="app">
-    ... aqui vai aparecer o resultado da API ...
+    ... respostas da API ...
   </pre>
 
-  <button class="bt-buscar">Buscar</button>
-  <button class="bt-cadastrar">Cadastrar</button>
-  <button class="bt-atualizar">Atualizar</button>
-  <button class="bt-patch">Patch</button>
-  <button class="bt-deletar">Deletar</button>
+  <button class="bt-buscar">buscar dados</button>
+  <button class="bt-enviar">enviar dados</button>
+  <button class="bt-atualizar">atualizar dados</button>
+  <button class="bt-patch">patch dados</button>
+  <button class="bt-deletar">deletar dados</button>
 
   <script>
     const container = document.querySelector('#app');
     const btBuscar = document.querySelector('.bt-buscar');
-    const btCadastrar = document.querySelector('.bt-cadastrar');
+    const btEnviar = document.querySelector('.bt-enviar');
     const btAtualizar = document.querySelector('.bt-atualizar');
     const btPatch = document.querySelector('.bt-patch');
     const btDeletar = document.querySelector('.bt-deletar');
@@ -33,7 +31,7 @@
       container.textContent = dados;
     });
 
-    btCadastrar.addEventListener('click', async () => {
+    btEnviar.addEventListener('click', async () => {
       const resposta = await fetch('/api/exemplo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -44,7 +42,7 @@
     });
 
     btAtualizar.addEventListener('click', async () => {
-      const resposta = await fetch('/api/exemplo/67', {
+      const resposta = await fetch('/api/exemplo/15', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nome: `Dado Atualizado ${Date.now()}` })
@@ -54,21 +52,21 @@
     });
 
     btPatch.addEventListener('click', async () => {
-      const resposta = await fetch('/api/exemplo/67', {
+      const resposta = await fetch('/api/exemplo/15', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome: `Daniel`, idade: 40 })
+        body: JSON.stringify({ idade: 40, nome: 'Dunha' })
       });
       const dados = await resposta.text();
       container.textContent = dados;
     });
 
     btDeletar.addEventListener('click', async () => {
-      const resposta = await fetch('/api/exemplo/67', { method: 'DELETE' });
+      const resposta = await fetch('/api/exemplo/15', { method: 'DELETE' });
       const dados = await resposta.text();
       container.textContent = dados;
     });
+
   </script>
 </body>
-
 </html>
