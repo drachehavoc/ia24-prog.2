@@ -23,10 +23,12 @@ async function saveToFile() {
   }
 }
 
+
 async function addItem(item: string) {
   list.push(item);
   await saveToFile();
 }
+
 
 async function getItems() {
   return list;

@@ -34,20 +34,20 @@
     });
 
     btCadastrar.addEventListener('click', async () => {
-      const resposta = await fetch('/api/exemplo', {
+      const resposta = await fetch('/api/todo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome: `Novo Dado ${Date.now()}` })
+        body: JSON.stringify({ item: `Novo item ${Date.now()}` })
       });
       const dados = await resposta.text();
       container.textContent = dados;
     });
 
     btAtualizar.addEventListener('click', async () => {
-      const resposta = await fetch('/api/exemplo/67', {
+      const resposta = await fetch('/api/todo/0', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome: `Dado Atualizado ${Date.now()}` })
+        body: JSON.stringify({ newItem: `Item atualizado ${Date.now()}` })
       });
       const dados = await resposta.text();
       container.textContent = dados;
@@ -64,7 +64,7 @@
     });
 
     btDeletar.addEventListener('click', async () => {
-      const resposta = await fetch('/api/exemplo/67', { method: 'DELETE' });
+      const resposta = await fetch('/api/todo/2', { method: 'DELETE' });
       const dados = await resposta.text();
       container.textContent = dados;
     });
