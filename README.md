@@ -3,7 +3,7 @@
 | Data         | Atividade | Objetivo |
 | ------------ | --------- | -------- |
 | 12/05/2026   | garatujas/000-leitura-api.md: criar o arquivo e adicionando o conteúdo dos arquivos core.ts e api.turma02.ts e comentando seu funcionamento e cada uma das linhas. | treinar a capacidade de interpretação de código |
-| 15/05/2026   | [EXTRA] adionar capacidade de fazer cache em rotas estáticas no `api.ts` | treinar a capacidade de interpretação de código e implementação de funcionalidades |
+| 15/05/2026   | `[EXTRA]` adionar capacidade de fazer cache em rotas estáticas no `api.ts` | treinar a capacidade de interpretação de código e implementação de funcionalidades |
 
 # Entregaveis - 1° Trimestre
 
@@ -24,7 +24,7 @@
     - `api.ts` (servidor para lidar com requisições HTTP)
   - ☐ `Frontend`
     - `index.html` (interface web para interagir com a lista de tarefas)
-    - `style.css` (estilos para a interface web)
+    - `style.css` (estilos para a interface web)\
 - ☐ `[ ]` Atividade / Parte 4: Aplicação web - com orientação a objetos e banco de dados sqlite
   - `core.ts` (lógica de negócios orientada a objetos, utilizando banco de dados sqlite para persistência dos dados)
   - `server.ts` (servidor para lidar com requisições HTTP)
