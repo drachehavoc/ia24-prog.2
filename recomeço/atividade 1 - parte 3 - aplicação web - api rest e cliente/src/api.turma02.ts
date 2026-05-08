@@ -3,9 +3,7 @@ import todo from "./core.ts";
 const server = Bun.serve({
   port: 3000,
 
-  routes: {
-   
-    
+  routes: {    
     "/api/todo": {
       GET: async () => {
         const items = await todo.getItems()
@@ -54,15 +52,15 @@ const server = Bun.serve({
   },
 
   async fetch(req) {
-    // http://localhost:3000/api/todo/1&chave=valor
     const url = new URL(req.url);
     const path = url.pathname;
     const filePath = (path === '/')
       ? './public/index.html'
       : `./public${path}`;
     const file = Bun.file(filePath);
-    if (await file.exists()) 
+    if (await file.exists()) {
       return new Response(file);
+    }
     return new Response(`Not Found`, { status: 404 });
   },
 });
