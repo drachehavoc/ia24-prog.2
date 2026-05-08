@@ -2,7 +2,7 @@
 
 | Data         | Atividade | Objetivo |
 | ------------ | --------- | -------- |
-| 08/05/2026   | garatujas/000-leitura-api.md: criar o arquivo e adicionando o conteúdo dos arquivos core.ts e api.turma02.ts e comentando seu funcionamento e cada uma das linhas. | treinar a capacidade de interpretação de código |
+| 12/05/2026   | garatujas/000-leitura-api.md: criar o arquivo e adicionando o conteúdo dos arquivos core.ts e api.turma02.ts e comentando seu funcionamento e cada uma das linhas. | treinar a capacidade de interpretação de código |
 
 # Entregaveis - 1° Trimestre
 
