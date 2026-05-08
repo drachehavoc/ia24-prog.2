@@ -1,7 +1,4 @@
 import todo from "./core.ts";
-import path from "path";
-
-const PUBLIC_DIR = "./public";
 
 const server = Bun.serve({
   port: 3000,
