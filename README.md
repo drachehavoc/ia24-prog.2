@@ -3,6 +3,7 @@
 | Data         | Atividade | Objetivo |
 | ------------ | --------- | -------- |
 | 12/05/2026   | garatujas/000-leitura-api.md: criar o arquivo e adicionando o conteúdo dos arquivos core.ts e api.turma02.ts e comentando seu funcionamento e cada uma das linhas. | treinar a capacidade de interpretação de código |
+| 15/05/2026   | [EXTRA] adionar capacidade de fazer cache em rotas estáticas no `api.ts` | treinar a capacidade de interpretação de código e implementação de funcionalidades |
 
 # Entregaveis - 1° Trimestre
 
