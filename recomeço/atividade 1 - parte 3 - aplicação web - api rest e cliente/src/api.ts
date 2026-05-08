@@ -93,7 +93,8 @@ const server = Bun.serve({
       : `./public${url.pathname}`;
     const file = Bun.file(path);
     if (await file.exists()) {
-      const response = new Response(file); // Cria a resposta com o arquivo
+      const buffer = await file.arrayBuffer(); // Lê o arquivo como um ArrayBuffer
+      const response = new Response(buffer, { headers: { "Content-Type": file.type } }); // Cria a resposta com o conteúdo do arquivo e o tipo MIME correto
       cache.set(req.url, response.clone() as Response); // Armazena uma cópia da resposta no cache
       return response; // Retorna a resposta original
     }
