@@ -1,34 +1,18 @@
 # Entregaveis - 2° Trimestre
 
-| Data         | Atividade | 
-| ------------ | --------- | 
-| 08/05/2026   | garatujas/000-leitura-api.md: criar o arquivo e adicionando o conteúdo dos arquivos core.ts e api.turma02.ts e comentando seu funcionamento e cada uma das linhas. | 
+| Data         | Atividade | Objetivo |
+| ------------ | --------- | -------- |
+| 08/05/2026   | garatujas/000-leitura-api.md: criar o arquivo e adicionando o conteúdo dos arquivos core.ts e api.turma02.ts e comentando seu funcionamento e cada uma das linhas. | treinar a capacidade de interpretação de código |
 
 # Entregaveis - 1° Trimestre
 
-- ☑ `[primeira semana de maio]` Garatujas
-  - ☑ Anotações pessoais sobre conteúdos vistos
-  - ☑ Revisão HTML, CSS
-    - ☑ Interface Web para o Projeto - Cadastro de Termos Técnicos
-- ☑ `[31 de Março]` Atividade / Parte 1: Aplicação terminal - sem orientação a objetos
-  - `core.ts` (lógica de negócios)
-  - `cli.ts` (lógica de interação com o usuário via terminal)
-  - Adicionar funcio
-- ☑ `[14 de Abril]` Atividade / Parte 2: Aplicação terminal - com orientação a objetos
-  - `core.ts` (lógica de negócios orientada a objetos)
-  - `cli.ts` (lógica de interação com o usuário via terminal)
-- ☑ `[24 de Abril]` Atividade / Parte 3: Aplicação web - com orientação a objetos
-  - ☑ `Backend`
-    - `core.ts` (lógica de negócios orientada a objetos)
-    - `api.ts` (servidor para lidar com requisições HTTP)
-  - ☐ `Frontend`
-    - `index.html` (interface web para interagir com a lista de tarefas)
-    - `style.css` (estilos para a interface web)
-- ☐ `[ ]` Atividade / Parte 4: Aplicação web - com orientação a objetos e banco de dados sqlite
-  - `core.ts` (lógica de negócios orientada a objetos, utilizando banco de dados sqlite para persistência dos dados)
-  - `server.ts` (servidor para lidar com requisições HTTP)
-  - `index.html` (interface web para interagir com a lista de tarefas)
-  - `style.css` (estilos para a interface web)
+| Status | Data | Atividade | Entregáveis |
+| ------ | ---- | --------- | ----------- |
+| ☑ | `primeira semana de maio` | Garatujas | ☑ Anotações pessoais sobre conteúdos vistos<br>☑ Revisão HTML, CSS<br>&nbsp;&nbsp;↳ ☑ Interface Web para o Projeto - Cadastro de Termos Técnicos |
+| ☑ | `31 de Março` | Atividade / Parte 1: Aplicação terminal - sem orientação a objetos | `core.ts` (lógica de negócios)<br>`cli.ts` (lógica de interação com o usuário via terminal)<br>Adicionar funcio |
+| ☑ | `14 de Abril` | Atividade / Parte 2: Aplicação terminal - com orientação a objetos | `core.ts` (lógica de negócios orientada a objetos)<br>`cli.ts` (lógica de interação com o usuário via terminal) |
+| ☑ | `24 de Abril` | Atividade / Parte 3: Aplicação web - com orientação a objetos | ☑ `Backend`<br>&nbsp;&nbsp;↳ `core.ts` (lógica de negócios orientada a objetos)<br>&nbsp;&nbsp;↳ `api.ts` (servidor para lidar com requisições HTTP)<br>☐ `Frontend`<br>&nbsp;&nbsp;↳ `index.html` (interface web para interagir com a lista de tarefas)<br>&nbsp;&nbsp;↳ `style.css` (estilos para a interface web) |
+| ☐ | `[ ]` | Atividade / Parte 4: Aplicação web - com orientação a objetos e banco de dados sqlite | `core.ts` (lógica de negócios orientada a objetos, utilizando banco de dados sqlite para persistência dos dados)<br>`server.ts` (servidor para lidar com requisições HTTP)<br>`index.html` (interface web para interagir com a lista de tarefas)<br>`style.css` (estilos para a interface web) |
 
 # Programação 2
 
